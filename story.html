@@ -3,8 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Story | Masala Mint</title>
+    <title>Our Story & Framework | Masala Mint</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional inner sections for the expanded story profile */
+        .story-divider {
+            margin: 60px 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(45,106,79,0.2), transparent);
+        }
+        
+        .flow-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .flow-summary-box {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary);
+            font-size: 16px;
+        }
+        .flow-summary-box h4 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        @media (max-width: 992px) {
+            .flow-summary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
@@ -26,14 +58,65 @@
 
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Our Vision & Mission</h2>
-            <div class="split-section">
+            <h2 class="section-title">Our Vision & Framework</h2>
+            <p class="section-subtitle">Bridging the rural street hospitality gap through standard infrastructure</p>
+            
+            <!-- MAIN VISION BLOCK -->
+            <div class="split-section" style="margin-bottom: 50px;">
                 <div>
                     <h3>Why Masala Mint Exists</h3>
                     <p>Rural communities shouldn't have to compromise on standard hygiene. Our brand transforms inconsistent, informal roadside stalls into certified clean food hubs.</p>
+                    <p>Every single franchise generates durable income metrics for village vendor families while driving modern culinary benchmarks locally.</p>
                 </div>
-                <img src="hero_magic.jpg" alt="Masala Mint micro franchise food cart" class="feat-image">
+                <img src="hero_magic.jpg" alt="Masala Mint mobile micro franchise food cart operating on street" class="feat-image">
             </div>
+
+            <hr class="story-divider">
+
+            <!-- INTEGRATED HOW IT WORKS DEPTH -->
+            <div class="split-section" style="margin-bottom: 50px;">
+                <img src="process-flow.jpg" alt="Operational management mapping blueprints" class="feat-image">
+                <div>
+                    <h3>Operational Blueprint Integration</h3>
+                    <p>The core of our success lies in mathematical franchise reproducibility. We select strategic regional clusters, recruit high-potential local merchants, and onboard them into our centralized ecosystem.</p>
+                    <p>This strict pipeline ensures that the flavor, pricing structure, and transactional logistics remain uniform whether a consumer visits an urban center or a remote rural hub.</p>
+                </div>
+            </div>
+
+            <h4 style="text-align: center; margin-top: 40px; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;">Our Strategic Onboarding Flow</h4>
+            <div class="flow-summary-grid">
+                <div class="flow-summary-box">
+                    <h4>1. Hub Mapping</h4>
+                    <p>Cluster mapping metrics filter area demographics to isolate regions lacking hygienic micro-vending portals.</p>
+                </div>
+                <div class="flow-summary-box">
+                    <h4>2. Vendor Validation</h4>
+                    <p>Local micro-entrepreneurs are selected and systematically certified using extensive recipe training fields.</p>
+                </div>
+                <div class="flow-summary-box">
+                    <h4>3. Supply Logistics</h4>
+                    <p>Franchise nodes link to daily raw component networks for portion-managed inventory balancing.</p>
+                </div>
+            </div>
+
+            <hr class="story-divider">
+
+            <!-- INTEGRATED SAFETY & HYGIENE DEPTH -->
+            <div class="split-section">
+                <div>
+                    <h3>Uncompromising Safety Protocol Matrix</h3>
+                    <p>To establish durable trust across village sectors, we enforce standard parameters engineered for comprehensive food safety. We leave nothing to chance.</p>
+                    <p>Our micro-franchise physical environments undergo structured quality tracking protocols daily, verifying parameters through remote CCTV streams and strict sanitation criteria.</p>
+                    <ul style="line-height: 2; margin-top: 15px; font-size: 18px; color: #555;">
+                        <li>✔️ Mandatory Sanitary Hair Net Enclosures</li>
+                        <li>✔️ Standard Canvas Uniform Aprons</li>
+                        <li>✔️ Food Grade Single-use Glove Configurations</li>
+                        <li>✔️ Continuous Multi-stage RO Filtration Water Systems</li>
+                    </ul>
+                </div>
+                <img src="hygiene-standards.png" alt="Safety tools close up gloved hands kitchen execution" class="feat-image">
+            </div>
+
         </div>
     </section>
 
