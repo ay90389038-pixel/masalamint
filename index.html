@@ -18,17 +18,6 @@
         .hero-content h1 { color: white; font-size: 76px; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; }
         .hero-content p { color: #f8f9fa; font-size: 26px; text-transform: uppercase; margin-bottom: 40px; letter-spacing: 1px; }
         .launch-notice { background-color: #fff3e0; border-left: 8px solid var(--accent); padding: 40px 0;}
-        
-        /* Modal Overlay Configuration */
-        .modal-overlay {
-            display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
-        }
-        .modal-box {
-            background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%;
-            text-align: center; position: relative; border-top: 8px solid var(--accent);
-        }
-        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
     </style>
 </head>
 <body>
@@ -44,7 +33,7 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html">Join Us</a>
-                <button class="btn btn-login" onclick="triggerLoginPopup()">Login</button>
+                <a href="login.html" class="btn-login">Login</a>
             </nav>
         </div>
     </header>
@@ -68,36 +57,9 @@
         </div>
     </section>
 
-    <section class="section">
-        <div class="container split-section">
-            <div>
-                <h2>Standardizing the Roadside Vending Ecosystem</h2>
-                <p>Unbranded food carts often face continuous challenges with recipe portion uniformity and sanitation. Masala Mint is transforming this dynamic across village networks.</p>
-                <p>We supply regional entrepreneurial clusters with fully audited modern cart frameworks, certified water setups, and uniform ingredient formulations.</p>
-            </div>
-            <img src="quality-control.jpg" alt="Kitchen setup and fresh validation logs" class="feat-image">
-        </div>
-    </section>
-
-    <!-- NATIVE POPUP DIALOG MODULE -->
-    <div id="popupBox" class="modal-overlay">
-        <div class="modal-box">
-            <span class="close-icon" onclick="dismissLoginPopup()">&times;</span>
-            <h2 style="color: var(--primary);">👤 Member Access</h2>
-            <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
-            <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissLoginPopup()">Got it</button>
-        </div>
-    </div>
-
     <footer>
         <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
     </footer>
 
-    <script>
-        var popup = document.getElementById("popupBox");
-        function triggerLoginPopup() { popup.style.display = "flex"; }
-        function dismissLoginPopup() { popup.style.display = "none"; }
-        window.onclick = function(event) { if (event.target == popup) { popup.style.display = "none"; } }
-    </script>
 </body>
 </html>
