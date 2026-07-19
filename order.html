@@ -33,7 +33,7 @@
         }
         .order-search-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 10px rgba(45,106,79,0.1); }
 
-        /* 2. HORIZONTAL SUB-CATEGORY NAVIGATION */
+        /* 2. NEW: HORIZONTAL SUB-CATEGORY NAVIGATION */
         .category-nav-wrapper {
             background-color: #fff;
             padding: 15px 0;
@@ -46,10 +46,11 @@
         .category-nav {
             display: flex;
             gap: 15px;
-            overflow-x: auto; 
+            overflow-x: auto; /* Allows horizontal scroll on mobile */
             white-space: nowrap;
-            padding-bottom: 5px; 
+            padding-bottom: 5px; /* space for scrollbar */
         }
+        /* Hide scrollbar for clean look */
         .category-nav::-webkit-scrollbar { display: none; }
         .category-nav { -ms-overflow-style: none;  scrollbar-width: none; }
 
@@ -63,7 +64,7 @@
             cursor: pointer;
             border: 1px solid transparent;
             transition: all 0.3s ease;
-            flex-shrink: 0; 
+            flex-shrink: 0; /* Prevents shrinking in flex layout */
         }
         .category-btn:hover, .category-btn.active {
             background-color: var(--primary);
@@ -72,6 +73,7 @@
         }
 
         /* 3. PRODUCT GRID & CARDS */
+        /* Offset anchors for smooth scrolling to sections below the fixed navs */
         .category-section { scroll-margin-top: 160px; margin-bottom: 60px; }
 
         .category-heading {
@@ -108,48 +110,18 @@
         .product-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
         .product-price { font-size: 22px; font-weight: bold; color: var(--primary); }
 
-        /* NATIVE PARTNER NETWORK STYLES */
-        .partner-title-box {
-            border-top: 2px dashed #ccc;
-            padding-top: 50px;
-            margin-top: 50px;
-            scroll-margin-top: 160px;
-        }
-        .partner-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 30px;
-        }
-        .partner-card {
-            background: #fff;
-            border-left: 6px solid var(--accent);
-            text-align: left;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .partner-card:hover { transform: translateY(-3px); }
-        .partner-card h4 { font-size: 24px; color: var(--dark); margin-bottom: 5px;}
-        .partner-card p { font-size: 16px; margin-bottom: 15px; }
-
         /* 4. MODAL OVERLAY STYLES */
         .modal-overlay {
             display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
             background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
         }
         .modal-box {
-            background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%;
+            background: #fff; padding: 45px; border-radius: 166px; max-width: 500px; width: 90%;
             text-align: center; position: relative; border-top: 8px solid var(--accent);
         }
         .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
 
-        @media (max-width: 1200px) { 
-            .order-grid { grid-template-columns: repeat(2, 1fr); } 
-            .partner-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 1200px) { .order-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 650px) { .order-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -167,6 +139,7 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html">Join Us</a>
+                <!-- NEW: LOGIN OPTION -->
                 <button class="btn btn-login" onclick="triggerPopup('login')">Login</button>
             </nav>
         </div>
@@ -184,7 +157,7 @@
             </div>
         </div>
 
-        <!-- HORIZONTAL SUB-CATEGORY NAVIGATION (Fixed on scroll, updated to include partners) -->
+        <!-- NEW: HORIZONTAL SUB-CATEGORY NAVIGATION (Fixed on scroll) -->
         <div class="category-nav-wrapper">
             <div class="container">
                 <div class="category-nav" id="categoryNav">
@@ -192,7 +165,6 @@
                     <button class="category-btn" onclick="scrollToSection('fruits', this)">Fresh Fruits</button>
                     <button class="category-btn" onclick="scrollToSection('veg', this)">Vegetables</button>
                     <button class="category-btn" onclick="scrollToSection('beverages', this)">Beverages</button>
-                    <button class="category-btn" onclick="scrollToSection('partners', this)">Partner Shops</button>
                 </div>
             </div>
         </div>
@@ -298,56 +270,21 @@
                 </div>
             </div>
 
-            <!-- NATIVE MID-LEVEL SHOP HUB -->
-            <div id="partners" class="partner-title-box category-section">
-                <h3 class="category-heading" style="color: #d35400;">🤝 Verified Partner Kitchens</h3>
-                <p style="margin-bottom: 20px;">Order natively from our audited regional mid-level partner shops active within the system ecosystem:</p>
-                
-                <div class="partner-grid">
-                    <div class="partner-card" onclick="triggerPopup('partner')">
-                        <h4>Sharma Sweets & Cafe</h4>
-                        <p style="color:#777; font-size:15px; margin-bottom: 5px;">Dulehra Market Cluster</p>
-                        <p>Famous for fresh regional North Indian meals and traditional dairy delicacies.</p>
-                        <span style="color:var(--primary); font-weight:bold; font-size:15px;">Order Natively →</span>
-                    </div>
-                    <div class="partner-card" onclick="triggerPopup('partner')">
-                        <h4>Royal Bakers</h4>
-                        <p style="color:#777; font-size:15px; margin-bottom: 5px;">Bulandshahr Central</p>
-                        <p>Providing custom celebration confectionery, multi-grain sandwich breads, and baked rolls.</p>
-                        <span style="color:var(--primary); font-weight:bold; font-size:15px;">Order Natively →</span>
-                    </div>
-                    <div class="partner-card" onclick="triggerPopup('partner')">
-                        <h4>Krishna Dosa Point</h4>
-                        <p style="color:#777; font-size:15px; margin-bottom: 5px;">Siyana Road Junction</p>
-                        <p>High-turnover South Indian kitchen serving verified clean idlis, dosas, and sambhar variants.</p>
-                        <span style="color:var(--primary); font-weight:bold; font-size:15px;">Order Natively →</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <!-- UNIFIED POPUP DIALOG MODULE (Supports Order, Login, and Partner views) -->
+    <!-- UNIFIED POPUP DIALOG MODULE (Supports both Order & Login messages) -->
     <div id="popupBox" class="modal-overlay">
         <div class="modal-box">
             <span class="close-icon" onclick="dismissPopup()">&times;</span>
-            
             <div id="modalContentOrder">
                 <h2 style="color: #d35400;">🚀 Launching Shortly</h2>
-                <p style="margin-top:20px; font-size:18px;">Our completely direct internal shipping checkout channels are being validated right now. No external third-party apps required—checkout clears natively here soon!</p>
+                <p style="margin-top:20px; font-size:18px;">Our completely direct internal shipping checkout channels are being validated right now. No external multi-apps required—checkout clears natively here soon!</p>
             </div>
-            
             <div id="modalContentLogin" style="display:none;">
                 <h2 style="color: var(--primary);">👤 Member Access</h2>
                 <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
             </div>
-
-            <div id="modalContentPartner" style="display:none;">
-                <h2 style="color: #d35400;">🏢 Unified Logistics Processing</h2>
-                <p style="margin-top:20px; font-size:18px;">Partner kitchen items are currently being mapped directly into the internal Masala Mint fleet network. Natively routed deliveries will bypass third-party platforms for direct service soon.</p>
-            </div>
-            
             <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissPopup()">Got it</button>
         </div>
     </div>
@@ -359,28 +296,25 @@
 
     <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
+        // 1. Popup Logic (Updated to handle Login vs Order messages)
         var popup = document.getElementById("popupBox");
         var contentOrder = document.getElementById("modalContentOrder");
         var contentLogin = document.getElementById("modalContentLogin");
-        var contentPartner = document.getElementById("modalContentPartner");
 
         function triggerPopup(type) {
-            contentOrder.style.display = "none";
-            contentLogin.style.display = "none";
-            contentPartner.style.display = "none";
-
             if (type === 'login') {
+                contentOrder.style.display = "none";
                 contentLogin.style.display = "block";
-            } else if (type === 'partner') {
-                contentPartner.style.display = "block";
             } else {
                 contentOrder.style.display = "block";
+                contentLogin.style.display = "none";
             }
             popup.style.display = "flex";
         }
 
         function dismissPopup() { popup.style.display = "none"; }
         
+        // 2. Live Grid Search Logic
         function runGridSearch() {
             var searchTxt = document.getElementById("internalSearch").value.toLowerCase();
             var items = document.getElementsByClassName("product-card");
@@ -390,8 +324,12 @@
             }
         }
 
+        // 3. NEW: Horizontal Category Nav Logic
         function scrollToSection(sectionId, btn) {
+            // Smooth scroll to the target section
             document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+
+            // Update Active button state
             var buttons = document.getElementsByClassName("category-btn");
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove("active");
