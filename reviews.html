@@ -8,18 +8,8 @@
     <style>
         .feedback-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
         .feedback-card { background: var(--light); padding: 30px; border-radius: 12px; box-shadow: var(--shadow); }
-        .stars { color: #ffbc42; margin-bottom: 15px; font-size: 20px;}
-        .author-tag { margin-top: 20px; font-weight: bold; font-size: 16px; color: var(--primary); }
-        .modal-overlay {
-            display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
-        }
-        .modal-box {
-            background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%;
-            text-align: center; position: relative; border-top: 8px solid var(--accent);
-        }
-        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
-        @media (max-width: 992px) { .feedback-container { grid-template-columns: 1fr; } }
+        .stars { color: #ffbc42; margin-bottom: 15px;}
+        .author-tag { margin-top: 20px; font-weight: bold; color: var(--primary); }
     </style>
 </head>
 <body>
@@ -35,54 +25,27 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html" class="active">Reviews</a>
                 <a href="join-us.html">Join Us</a>
-                <button class="btn btn-login" onclick="triggerLoginPopup()">Login</button>
+                <a href="login.html" class="btn-login">Login</a>
             </nav>
         </div>
     </header>
 
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Verified Regional Testimonials</h2>
-            <p class="section-subtitle">Read what users think about our cluster units</p>
-            
+            <h2 class="section-title">Regional Community Feedback</h2>
             <div class="feedback-container">
                 <div class="feedback-card">
                     <div class="stars">★★★★★</div>
-                    <p>"The momos taste perfectly uniform every single week. Excellent change of standard compared to local unbranded options."</p>
+                    <p>"The items match city standards perfectly. Complete culinary hygiene consistency."</p>
                     <div class="author-tag">— Rahul Singh, Cluster Dulehra</div>
-                </div>
-                <div class="feedback-card" style="border-top: 5px solid var(--accent);">
-                    <div class="stars">★★★★★</div>
-                    <p>"Total sanitation clarity. Watching vendors operate inside clean environments wearing gloves gives complete reassurance."</p>
-                    <div class="author-tag">— Sunita Sharma, Bulandshahr</div>
-                </div>
-                <div class="feedback-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"The signature mint lemonade mix is unmatched. Clean, cold, incredibly professional presentation value."</p>
-                    <div class="author-tag">— Amit Gupta, Village Hub Farmer</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div id="popupBox" class="modal-overlay">
-        <div class="modal-box">
-            <span class="close-icon" onclick="dismissLoginPopup()">&times;</span>
-            <h2 style="color: var(--primary);">👤 Member Access</h2>
-            <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
-            <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissLoginPopup()">Got it</button>
-        </div>
-    </div>
-
     <footer>
         <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
     </footer>
 
-    <script>
-        var popup = document.getElementById("popupBox");
-        function triggerLoginPopup() { popup.style.display = "flex"; }
-        function dismissLoginPopup() { popup.style.display = "none"; }
-        window.onclick = function(event) { if (event.target == popup) { popup.style.display = "none"; } }
-    </script>
 </body>
 </html>
