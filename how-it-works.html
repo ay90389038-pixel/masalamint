@@ -3,43 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How it Works | The Masala Mint Process</title>
+    <title>How It Works | Masala Mint Operational System</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .process ol {
-            font-size: var(--font-p);
-            counter-reset: my-counter;
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 40px;
+        .flow-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px;}
+        .flow-step { background: var(--light); padding: 25px; border-radius: 8px; border-left: 5px solid var(--primary); font-weight: 600;}
+        .modal-overlay {
+            display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
         }
-        .process ol li {
-            counter-increment: my-counter;
-            position: relative;
-            background-color: var(--light);
-            padding: 30px;
-            border-radius: 8px;
-            border-left: 5px solid var(--primary);
+        .modal-box {
+            background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%;
+            text-align: center; position: relative; border-top: 8px solid var(--accent);
         }
-        .process ol li::before {
-            content: counter(my-counter) ".";
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 1.3em;
-            margin-right: 15px;
-        }
-        @media (max-width: 768px) { .process ol { grid-template-columns: 1fr; } }
+        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
+        @media (max-width: 768px) { .flow-list { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <header>
         <div class="container">
-            <div class="logo">
-                <a href="index.html"><h1>Masala <span>Mint</span></h1></a>
-            </div>
+            <div class="logo"><a href="index.html"><h1>Masala <span>Mint</span></h1></a></div>
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="story.html">Story</a>
@@ -48,43 +33,53 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html">Join Us</a>
+                <button class="btn btn-login" onclick="triggerLoginPopup()">Login</button>
             </nav>
         </div>
     </header>
 
-    <section class="section process-page">
+    <section class="section">
         <div class="container">
-            <h2 class="section-title">The Masala Mint Method</h2>
-            <p class="section-subtitle">How We bring Standardization to Villages</p>
+            <h2 class="section-title">The Scalable Franchise Blueprint</h2>
+            <p class="section-subtitle">Methodical structural integration step-by-step</p>
             
             <div class="split-section">
                 <div>
-                    <h3>methodical Expansion</h3>
-                    <p>We don't expand randomly. We build trusted hubs in specific village clusters, ensuring quality stays perfect as we grow.</p>
+                    <h3>Engineered Operational Security</h3>
+                    <p>From centralized bulk component tracking to direct physical deployment, we remove guesswork from operations management entirely.</p>
                 </div>
-                <img src="process-flow.jpg" alt="Team mapping village expansion" class="feat-image">
+                <img src="process-flow.jpg" alt="Expansion mapping system visualization graph" class="feat-image">
             </div>
 
-            <div class="section process">
-                <h3>Our Simple, Scalable Flow</h3>
-                <p>This flow is implemented in every new operational hub:</p>
-                <ol>
-                    <li>Cluster Identification & Mapping</li>
-                    <li>Local Vendor Identification & Vetting</li>
-                    <li>Culinary & Hygiene Training (SOP Certification)</li>
-                    <li>Branded Mobile Cart Deployment</li>
-                    <li>Daily Raw Material Supply & Quality Audits</li>
-                    <li>Integrated District Logistics Hub Activation</li>
-                </ol>
+            <div class="flow-list">
+                <div class="flow-step">1. Strategic Hub Mapping & Demographics Selection</div>
+                <div class="flow-step">2. Micro-Entrepreneur Sourcing & Onboarding</div>
+                <div class="flow-step">3. Rigorous SOP Culinary Preparation Training</div>
+                <div class="flow-step">4. Modern Branded Infrastructure Deployment</div>
+                <div class="flow-step">5. Central Raw Ingredient Quality Supply Chain Linkage</div>
+                <div class="flow-step">6. Real-time Remote Safety Audits & CCTV Oversight</div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Masala Mint. All Rights Reserved.</p>
+    <div id="popupBox" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-icon" onclick="dismissLoginPopup()">&times;</span>
+            <h2 style="color: var(--primary);">👤 Member Access</h2>
+            <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissLoginPopup()">Got it</button>
         </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
     </footer>
 
+    <script>
+        var popup = document.getElementById("popupBox");
+        function triggerLoginPopup() { popup.style.display = "flex"; }
+        function dismissLoginPopup() { popup.style.display = "none"; }
+        window.onclick = function(event) { if (event.target == popup) { popup.style.display = "none"; } }
+    </script>
 </body>
 </html>
