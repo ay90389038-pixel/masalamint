@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Online | Masala Mint Products</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific ordering grid styles */
+        .order-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .product-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+        .product-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .product-card h4 { font-size: 24px; color: var(--dark); margin-bottom: 10px; }
+        .product-card .price { font-size: 22px; color: var(--primary); font-weight: bold; }
+
+        /* Modal styles linked locally for this page */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background-color: #fff; padding: 50px; border-radius: 16px; max-width: 550px; width: 90%;
+            text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 8px solid var(--accent);
+            position: relative; animation: modalFade 0.3s ease;
+        }
+        @keyframes modalFade { from {transform: translateY(-20px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #aaa; }
+        
+        @media (max-width: 992px) { .order-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .order-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <!-- Consistent Header with Active order link -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><h1>Masala <span>Mint</span></h1></a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="story.html">Story</a>
+                <a href="how-it-works.html">How it Works</a>
+                <a href="order.html" class="active">Order</a>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-bar" placeholder="Search product...">
+                </div>
+                <div class="cart-icon">🛒<span class="cart-bubble">0</span></div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section order-page">
+        <div class="container">
+            <h2 class="section-title">Order From Our Kitchen</h2>
+            <p class="section-subtitle">Fresh Food, Delivered by our SOP Certified Network</p>
+            
+            <div class="order-grid">
+                <!-- All products trigger the local modal on this page -->
+                <div class="product-card" onclick="openModal()">
+                    <h4>Classic Veg Burger</h4>
+                    <p class="price">₹40</p>
+                </div>
+                <div class="product-card" onclick="openModal()">
+                    <h4>Steamed Momos</h4>
+                    <p class="price">₹30</p>
+                </div>
+                <div class="product-card" onclick="openModal()">
+                    <h4>Mint Lemonade</h4>
+                    <p class="price">₹20</p>
+                </div>
+                <div class="product-card" onclick="openModal()">
+                    <h4>Uttapam Mix</h4>
+                    <p class="price">₹25</p>
+                </div>
+                <div class="product-card" onclick="openModal()">
+                    <h4>Aloo Tikki Burger</h4>
+                    <p class="price">₹35</p>
+                </div>
+                <div class="product-card" onclick="openModal()">
+                    <h4>Fresh Fruit Chat</h4>
+                    <p class="price">₹20</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMING SOON MODAL POPUP -->
+    <div id="comingSoonModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 style="color: #d35400; margin-bottom: 15px;">🚀 Coming Soon!</h2>
+            <h3>Masala Mint Native Ordering</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">We are currently finalizing our native delivery infrastructure and automated ordering pipeline. Our 100% internal logistics network is launching shortly!</p>
+            <button class="btn btn-primary" onclick="closeModal()">Got it, Thanks!</button>
+        </div>
+    </div>
+
+    <!-- Consistent Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-logo">
+                <h2>Masala Mint</h2>
+                <p>Standardizing rural food.</p>
+            </div>
+            <div>
+                <p class="footer-title">Explore</p>
+                <ul class="footer-links">
+                    <li><a href="story.html">Our Story</a></li>
+                    <li><a href="how-it-works.html">How it Works</a></li>
+                    <li><a href="order.html">Order</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="footer-title">Contact</p>
+                <p>hello@masalamint.in</p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Masala Mint. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Script for Modal -->
+    <script>
+        var modal = document.getElementById("comingSoonModal");
+        function openModal() { modal.style.display = "flex"; }
+        function closeModal() { modal.style.display = "none"; }
+        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
+    </script>
+
+</body>
+</html>
