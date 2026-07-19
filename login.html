@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Gateway Portal | Masala Mint</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-frame { max-width: 450px; margin: 60px auto; padding: 40px; background: var(--light); border-radius: 12px; box-shadow: var(--shadow); border-top: 6px solid var(--primary); }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px; color: var(--dark); }
+        .input-field { width: 100%; padding: 12px 15px; border-radius: 6px; border: 1px solid #ccc; font-size: 16px; }
+        .input-field:focus { outline: none; border-color: var(--primary); }
+        .alert-box { display: none; margin-top: 20px; padding: 15px; background-color: #ffe0b2; border-left: 5px solid var(--accent); border-radius: 4px; font-size: 16px; color: #b78103; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo"><a href="index.html"><h1>Masala <span>Mint</span></h1></a></div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="story.html">Story</a>
+                <a href="how-it-works.html">How it Works</a>
+                <a href="order.html">Order</a>
+                <a href="safety.html">Safety First</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="join-us.html">Join Us</a>
+                <a href="login.html" class="btn-login active">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section" style="text-align: center;">
+        <div class="container">
+            <div class="login-frame">
+                <h3>Member Login</h3>
+                <p style="font-size: 16px; margin-bottom: 30px;">Access your internal franchise order hub profile</p>
+                
+                <form onsubmit="handleLoginSubmit(event)">
+                    <div class="input-group">
+                        <label>Registered Phone / Email</label>
+                        <input type="text" class="input-field" placeholder="Enter credentials..." required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" class="input-field" placeholder="Enter password..." required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Authenticate Access</button>
+                </form>
+
+                <div id="loginNotice" class="alert-box">
+                    <strong>Notice:</strong> Account authentication databases are currently undergoing localized synchronization. Live authentication profiles will activate during the official block rollout.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            document.getElementById("loginNotice").style.display = "block";
+        }
+    </script>
+
+    <footer>
+        <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
+    </footer>
+
+</body>
+</html>
