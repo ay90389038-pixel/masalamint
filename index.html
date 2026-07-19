@@ -4,474 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masala Mint | Taste the Magic | Standardizing Rural Street Food</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to Master CSS -->
     <style>
-        /* CORE BRAND VARIABLES - LARGE FONT SCALING */
-        :root {
-            --primary: #2d6a4f;      /* Forest Green */
-            --primary-light: #52b788;
-            --accent: #ff9f1c;       /* Safety Orange */
-            --dark: #1b4332;         /* Deep Green */
-            --light: #f8f9fa;        /* Clean White */
-            --text: #2b2d42;         /* Dark Gray */
-            --shadow: 0 4px 6px rgba(0,0,0,0.1);
-
-            /* SCALED font sizes */
-            --font-h1: 64px;       
-            --font-h2: 48px;       
-            --font-h3: 32px;       
-            --font-p: 22px;        
-            --font-nav: 18px;      
-            --font-subtitle: 24px; 
-            --font-small: 16px;    
-        }
-
-        /* RESET & BASE */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text);
-            background-color: #fff;
-            line-height: 1.6;
-            font-size: var(--font-p);
-        }
-        h1, h2, h3 { color: var(--dark); margin-bottom: 1.25rem; }
-        h1 { font-size: var(--font-h1); }
-        h2 { font-size: var(--font-h2); }
-        h3 { font-size: var(--font-h3); }
-        p { margin-bottom: 2rem; color: #555; font-size: var(--font-p); }
-        ul { list-style: none; }
-        a { text-decoration: none; color: inherit; }
-
-        /* REUSABLE COMPONENTS */
-        .container {
-            width: 90%;
-            max-width: 1300px; 
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section { padding: 100px 0; } 
-        .section-title { text-align: center; text-transform: uppercase; letter-spacing: 3px; font-size: var(--font-h2); margin-bottom: 15px;}
-        .section-subtitle { text-align: center; color: var(--primary); font-style: italic; margin-top: -15px; margin-bottom: 60px; font-size: var(--font-subtitle); font-weight: normal;}
-
-        .btn {
-            display: inline-block;
-            padding: 16px 40px; 
-            border-radius: 50px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            font-size: 16px; 
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-            box-shadow: 0 6px 18px rgba(45, 106, 79, 0.4);
-        }
-        .btn-primary:hover { background-color: var(--dark); transform: translateY(-3px); }
-
-        .btn-accent {
-            background-color: var(--accent);
-            color: var(--dark);
-        }
-        .btn-accent:hover { background-color: #e68a00; transform: translateY(-3px); }
-
-        .split-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .feat-image {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            object-fit: cover;
-        }
-
-        /* ICONS MOCKUPS */
-        .icon-list li::before {
-            content: '✦'; 
-            color: var(--accent);
-            margin-right: 15px;
-            font-size: 1.1em;
-        }
-
-        /* 1. HEADER & TOP RIGHT SEARCH LAYOUT */
-        header {
-            background-color: #fff;
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.07);
-        }
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo h1 { font-size: 36px; margin: 0; color: var(--primary); }
-        .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 25px; font-weight: 500; font-size: var(--font-nav); align-items: center;}
-        .nav-links a:hover { color: var(--primary); }
-
-        /* HEADER INTEGRATED SEARCH BAR */
-        .search-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        .search-bar {
-            padding: 10px 15px 10px 35px;
-            border-radius: 20px;
-            border: 2px solid #ccc;
-            font-size: 16px;
-            width: 220px;
-            transition: all 0.3s ease;
-        }
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--primary);
-            width: 280px;
-        }
-        .search-icon {
-            position: absolute;
-            left: 12px;
-            font-size: 16px;
-            color: #888;
-            pointer-events: none;
-        }
-        .cart-bubble {
-            background-color: var(--accent);
-            color: var(--dark);
-            font-weight: bold;
-            border-radius: 50%;
-            padding: 4px 10px;
-            font-size: 14px;
-            margin-left: 5px;
-        }
-
-        /* 2. HERO SECTION */
+        /* Homepage specific Hero styles */
         .hero {
-            height: 100vh;
+            height: 90vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('hero_magic.jpg') no-repeat center center/cover;
             color: white;
             display: flex;
             align-items: center;
             text-align: center;
-            padding-top: 100px; 
+            margin-top: -100px; /* Reset header space for hero */
         }
         .hero-content h1 { color: white; font-size: 80px; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 3px;}
         .hero-content p { color: rgba(255,255,255,0.95); font-size: 28px; max-width: 850px; margin: 0 auto 50px auto; font-style: normal; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px;}
-
-        /* NATIVE PRODUCT ORDER SECTION STYLES */
-        .order-section { background-color: #fff; text-align: center; }
-        .order-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .product-card {
-            background: var(--light);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-8px);
-        }
-        .product-img-box {
-            width: 100%;
-            height: 220px;
-            background-color: #e2e8f0;
-            overflow: hidden;
-        }
-        .product-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        .product-card:hover .product-img-box img {
-            transform: scale(1.05);
-        }
-        .product-details {
-            padding: 25px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-        .product-details h4 { font-size: 24px; color: var(--dark); margin-bottom: 8px; }
-        .product-details p { font-size: 16px; margin-bottom: 15px; line-height: 1.4; color: #666;}
-        .product-bottom-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-        }
-        .product-card .price { font-size: 24px; color: var(--primary); font-weight: bold; margin-bottom: 0; }
-
-        /* MODAL POPUP STYLES */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            background-color: #fff;
-            padding: 50px;
-            border-radius: 16px;
-            max-width: 550px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border-top: 8px solid var(--accent);
-            position: relative;
-            animation: modalFade 0.3s ease;
-        }
-        @keyframes modalFade {
-            from {transform: translateY(-20px); opacity: 0;}
-            to {transform: translateY(0); opacity: 1;}
-        }
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: #aaa;
-        }
-        .close-btn:hover { color: #000; }
-
-        /* 3. MENU SECTION */
-        .menu-preview {
-            background-color: var(--light);
-            text-align: center;
-        }
-        .menu-frame {
-            max-width: 450px; 
-            margin: 0 auto;
-            border: 12px solid #fff;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-            overflow: hidden;
-            background: #fff;
-        }
-        .menu-frame img {
-            width: 100%;
-            display: block;
-        }
-
-        /* 4. SAFETY SECTION */
-        .safety { background-color: #fff; }
-        .safety-list { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .safety-list li {
-            background-color: #e8f5e9;
-            padding: 20px 30px;
-            border-radius: 10px;
-            color: var(--dark);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: var(--font-p);
-        }
-        .safety-list li::before { content: '✓'; color: var(--primary); font-weight: bold; font-size: 1.3em; }
-
-        /* 5. HOW IT WORKS */
-        .process { background-color: var(--light); }
-        .process h2 { color: var(--dark); text-transform: uppercase; text-align: center; letter-spacing: 3px; font-size: var(--font-h2); }
-        .process ol {
-            font-size: var(--font-p);
-            margin-left: 25px;
-            margin-bottom: 30px;
-            counter-reset: my-counter;
-            list-style: none;
-        }
-        .process ol li {
-            counter-increment: my-counter;
-            position: relative;
-            margin-bottom: 15px;
-        }
-        .process ol li::before {
-            content: counter(my-counter) ".";
-            color: var(--primary);
-            font-weight: bold;
-            position: absolute;
-            left: -25px;
-            font-size: 1.1em;
-        }
-
-        /* 6. WHY CHOOSE US */
-        .why { background-color: #fff; }
-        .why h2 { color: var(--dark); text-transform: uppercase; text-align: center; letter-spacing: 3px; font-size: var(--font-h2); }
-        .why ul { margin-top: 25px; margin-bottom: 30px;}
-        .why ul li { font-size: var(--font-p); margin-bottom: 10px; display: flex; align-items: center;}
-
-        /* 7. REVIEWS */
-        .reviews { background-color: var(--light); text-align: center;}
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
-        .review-card {
-            background-color: white;
-            text-align: left;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .review-stars { color: #f9c74f; font-size: 1.4em; margin-bottom: 10px;}
-        .review-text { font-size: var(--font-p); color: #555; font-style: italic; margin-bottom: 20px;}
-        .review-author { font-size: var(--font-small); font-weight: 500; color: var(--text);}
-        .review-author span { color: #777; }
-
-        /* 8. CONTACT SECTION */
-        .contact { background-color: var(--light); text-align: center;}
-        .contact-title { font-size: var(--font-h2); text-transform: uppercase; color: var(--dark); letter-spacing: 3px;}
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 50px;
-            text-align: left;
-        }
-        .contact-info {
-            background: #fff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            border-left: 6px solid var(--primary);
-        }
-        .contact-item { display: flex; align-items: flex-start; margin-bottom: 25px; }
-        .contact-item h3 { font-size: var(--font-h3); margin-bottom: 5px; }
-        .contact-item p { margin-bottom: 0; font-size: var(--font-p); }
-        .contact-item .icon-box { width: 60px; height: 60px; background-color: #e8f5e9; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 20px; flex-shrink: 0; border: 2px solid var(--primary-light); font-size: 30px;}
-
-        .contact-social { background-color: #fff; padding: 40px; border-radius: 12px; box-shadow: var(--shadow);}
-        .contact-social h2 { text-transform: uppercase; letter-spacing: 2px; text-align: left; margin-bottom: 15px;}
-        .contact-social-p { font-size: var(--font-subtitle); margin-bottom: 30px;}
-
-        /* 9. IMPACT SECTION */
-        .impact { background-color: var(--dark); color: white; }
-        .impact h2 { color: white; border: none; text-align: center; font-size: 60px;}
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-        }
-        .impact-card {
-            background-color: rgba(255,255,255,0.07);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.15);
-            padding: 40px;
-        }
-        .impact-card h3 { color: var(--accent); font-size: var(--font-h3); }
-        .impact-card p { color: rgba(255,255,255,0.9); font-size: var(--font-p);}
-
-        /* 10. VENDOR SECTION */
-        .vendor { background-color: #fff; }
-        .vendor h3 { margin-top: 25px; font-size: var(--font-h3); }
-
-        /* 11. LAUNCH NOTICE SECTION */
-        .launch-notice {
-            background-color: #fff3e0;
-            border-left: 8px solid var(--accent);
-        }
-
-        /* 12. FOOTER */
-        footer {
-            background-color: #111;
-            color: rgba(255,255,255,0.7);
-            padding: 80px 0 40px 0;
-            font-size: var(--font-p);
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 50px;
-        }
-        .footer-logo h2 { color: var(--primary-light); margin-bottom: 15px; font-size: 32px; }
-        .footer-title { color: white; font-weight: bold; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px;}
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a:hover { color: #fff; }
-        .footer-bottom {
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.15);
-            padding-top: 40px;
-            font-size: var(--font-small);
-        }
-
-        /* RESPONSIVE MEDIA QUERIES */
-        @media (max-width: 992px) {
-            :root {
-                --font-h1: 52px;
-                --font-h2: 40px;
-                --font-p: 20px;
-                --font-subtitle: 20px;
-            }
-            .hero-content h1 { font-size: 60px; }
-            .split-section { grid-template-columns: 1fr; text-align: center; gap: 40px;}
-            .section-title, .process h2, .why h2 { text-align: center !important; font-size: var(--font-h2) !important;}
-            .feat-image { max-width: 600px; margin: 0 auto; }
-            .impact-grid, .reviews-grid, .safety-list, .contact-grid, .order-grid { grid-template-columns: 1fr !important; }
-            .search-bar:focus { width: 200px; }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 40px; }
+            .hero-content p { font-size: 22px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. HEADER & TOP RIGHT SEARCH NAVIGATION -->
+    <!-- Consistent Header across pages -->
     <header>
         <div class="container">
             <div class="logo">
-                <a href="#"><h1>Masala <span>Mint</span></h1></a>
+                <a href="index.html"><h1>Masala <span>Mint</span></h1></a>
             </div>
             <nav class="nav-links">
-                <a href="#about">Story</a>
-                <a href="#process">How it Works</a>
-                <a href="#menu">Menu</a>
-                <a href="#order">Order</a>
-                <a href="#reviews">Reviews</a>
-                <a href="#contact">Contact</a>
-                
-                <!-- TOP RIGHT CORNER DYNAMIC SEARCH BAR -->
+                <a href="index.html" class="active">Home</a>
+                <a href="story.html">Story</a>
+                <a href="how-it-works.html">How it Works</a>
+                <a href="order.html">Order</a>
                 <div class="search-container">
                     <span class="search-icon">🔍</span>
-                    <input type="text" id="menuSearch" class="search-bar" placeholder="Search product to order..." onkeyup="filterSearch()">
+                    <input type="text" class="search-bar" placeholder="Search...">
                 </div>
-                <div class="cart-icon">🛒<span class="cart-bubble">0</span></div>
             </nav>
         </div>
     </header>
@@ -481,363 +51,48 @@
         <div class="container hero-content">
             <h1>MASALA MINT</h1>
             <p>TASTE THE MAGIC OF MASALA MINT!</p>
-            <a href="#order" class="btn btn-primary">Order Now</a>
-            <a href="#menu" class="btn btn-accent">View Menu</a>
+            <a href="order.html" class="btn btn-primary">Order Now</a>
+            <a href="story.html" class="btn btn-accent">Our Story</a>
         </div>
     </section>
 
-    <!-- [NATIVE PRODUCT GRID SECTION WITH PHOTOS] -->
-    <section id="order" class="section order-section">
-        <div class="container">
-            <h2 class="section-title">Order From Our Kitchen</h2>
-            <p class="section-subtitle">100% Internal Automated Logistics Network</p>
-            
-            <div class="order-grid" id="productGrid">
-                <!-- PRODUCT 1 -->
-                <div class="product-card" onclick="openModal()" data-name="classic veg burger">
-                    <div class="product-img-box">
-                        <img src="burger.png" alt="Classic Veg Burger">
-                    </div>
-                    <div class="product-details">
-                        <div>
-                            <h4>Classic Veg Burger</h4>
-                            <p>Fresh toasted whole wheat bun with crisp local vegetable patty and homemade mint spread.</p>
-                        </div>
-                        <div class="product-bottom-row">
-                            <span class="price">₹40</span>
-                            <button class="btn btn-accent" style="padding: 8px 16px; font-size: 14px; border-radius: 8px;">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- PRODUCT 2 -->
-                <div class="product-card" onclick="openModal()" data-name="steamed momos">
-                    <div class="product-img-box">
-                        <img src="momos.png" alt="Steamed Momos">
-                    </div>
-                    <div class="product-details">
-                        <div>
-                            <h4>Steamed Momos</h4>
-                            <p>Healthy, freshly steamed mixed vegetable pockets served alongside signature spicy dipping chutney.</p>
-                        </div>
-                        <div class="product-bottom-row">
-                            <span class="price">₹30</span>
-                            <button class="btn btn-accent" style="padding: 8px 16px; font-size: 14px; border-radius: 8px;">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- PRODUCT 3 -->
-                <div class="product-card" onclick="openModal()" data-name="signature mint lemonade">
-                    <div class="product-img-box">
-                        <img src="lemonade.png" alt="Signature Mint Lemonade">
-                    </div>
-                    <div class="product-details">
-                        <div>
-                            <h4>Mint Lemonade</h4>
-                            <p>Ice-cold refreshment made with squeezed organic lemons, raw salt, and crushed farm-fresh mint.</p>
-                        </div>
-                        <div class="product-bottom-row">
-                            <span class="price">₹20</span>
-                            <button class="btn btn-accent" style="padding: 8px 16px; font-size: 14px; border-radius: 8px;">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- PRODUCT 4 -->
-                <div class="product-card" onclick="openModal()" data-name="uttapam mix fast food">
-                    <div class="product-img-box">
-                        <img src="uttapam.png" alt="Uttapam Mix">
-                    </div>
-                    <div class="product-details">
-                        <div>
-                            <h4>Uttapam Mix</h4>
-                            <p>Lightly griddled savory rice batter pancake topped with fine chopped onions and green chilies.</p>
-                        </div>
-                        <div class="product-bottom-row">
-                            <span class="price">₹25</span>
-                            <button class="btn btn-accent" style="padding: 8px 16px; font-size: 14px; border-radius: 8px;">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- INDEPENDENT COMING SOON MODAL POPUP BOX -->
-    <div id="comingSoonModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 style="color: #d35400; margin-bottom: 15px;">🚀 Coming Soon!</h2>
-            <h3 style="font-size: 24px; margin-bottom: 10px;">Direct Native Delivery Network</h3>
-            <p style="font-size: 18px; margin-bottom: 25px;">Our automated online checkout pipeline is currently launching in your regional block cluster. No third-party apps required—stay tuned for direct deployment!</p>
-            <button class="btn btn-primary" onclick="closeModal()">Got it!</button>
-        </div>
-    </div>
-
-    <!-- LAUNCH NOTICE PAGE CONTAINER -->
-    <section class="section launch-notice">
+    <!-- Homepage Summary Section -->
+    <section class="section about">
         <div class="container split-section">
             <div>
-                <h2 class="section-title" style="text-align: left; color: #d35400;">🌟 Exciting News! 🌟</h2>
-                <h3>Masala Mint Cloud Kitchen is Coming Soon!</h3>
-                <p>Order your favourite Masala Mint meals online through our website and leading delivery platforms. Fresh food, prepared with the same trusted quality and delivered straight to your doorstep.</p>
-                <div class="highlight-box card" style="border-top-color: var(--accent); background: white;">
-                    <p style="margin: 0; font-weight: bold; color: var(--dark);">Stay tuned for the official launch!</p>
-                </div>
+                <h2>Welcome to Masala Mint</h2>
+                <p>We are dedicated to standardizing rural street food by combining consistent recipes with certified hygiene protocols.</p>
+                <p>Taste the magic across our authorized micro-franchises. Every meal supports reliable rural livelihoods.</p>
+                <a href="order.html" class="btn btn-accent">View Our Products</a>
             </div>
-            <img src="cloud-kitchen-launch.png" alt="Masala Mint delivery personnel handing over food box order" class="feat-image">
+            <img src="quality-control.jpg" alt="Masala Mint fresh ingredients" class="feat-image">
         </div>
     </section>
 
-    <!-- 3. HOW IT WORKS SECTION -->
-    <section id="process" class="section process">
-        <div class="container split-section">
-            <div>
-                <h2>How Masala Mint Works</h2>
-                <h3>A Simple, Scalable Flow</h3>
-                <p>We believe in methodical expansion that guarantees quality at every doorstep. This is how we bring Masala Mint to you:</p>
-                <ol>
-                    <li>Select village</li>
-                    <li>Recruit local vendor</li>
-                    <li>Train vendor</li>
-                    <li>Set up branded cart</li>
-                    <li>Daily quality checks</li>
-                    <li>Expand to nearby villages</li>
-                </ol>
-            </div>
-            <img src="process-flow.jpg" alt="Illustrative image of process flow: planning expansion and training a vendor" class="feat-image">
-        </div>
-    </section>
-
-    <!-- 4. WHY CHOOSE US SECTION -->
-    <section id="cvp" class="section why">
-        <div class="container split-section">
-            <img src="quality-control.jpg" alt="Illustrative image of quality control: fresh ingredients and a branded cart." class="feat-image">
-            <div>
-                <h2>Why Choose Masala Mint?</h2>
-                <h3>The Magic is in Our Standards</h3>
-                <p>Roadside vending often requires compromise. At Masala Mint, we believe you deserve taste, safety, and reliability without compromise.</p>
-                <ul class="why-list icon-list">
-                    <li>Hygienic Food</li>
-                    <li>Affordable Prices</li>
-                    <li>Standard Recipes</li>
-                    <li>Trained Vendors</li>
-                    <li>CCTV Monitoring</li>
-                    <li>Fresh Ingredients</li>
-                    <li>Friendly Service</li>
-                </ul>
-                <a href="#menu" class="btn btn-accent">Experience the Magic</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. ABOUT / STORY SECTION -->
-    <section id="about" class="section about">
-        <div class="container split-section">
-            <div>
-                <h2 class="section-title" style="text-align: left;">Our Vision</h2>
-                <p>Roadside food in villages often lacks consistency and hygiene. We are solving this. **Masala Mint** brings standardized recipes, professional food carts, and certified safety protocols to rural communities.</p>
-                <p>We operate via branded food carts, replacing unbranded, irregular setups with reliable, clean micro-franchises. Our dream is to become India's most trusted rural street food brand.</p>
-            </div>
-            <img src="hero_magic.jpg" alt="Masala Mint food cart operating in village" class="feat-image">
-        </div>
-    </section>
-
-    <!-- 6. MENU SECTION -->
-    <section id="menu" class="section menu-preview">
-        <div class="container">
-            <h2 class="section-title">The Standardized Menu</h2>
-            <p class="section-subtitle">Consistent Taste, Every Single Day</p>
-            
-            <div class="split-section">
-                <div class="menu-frame">
-                    <img src="menu_final.png" alt="Official Masala Mint Branded Menu Card">
-                </div>
-                <div style="text-align: left;">
-                    <h3>All Veg, All Fresh</h3>
-                    <p>Our menu is focused on regional favorites prepared with strict portion control and consistent spicing. From Classic Veg Burgers and Steamed Momos to our Signature Mint Lemonade, quality is guaranteed.</p>
-                    <div class="card accent-card" style="margin-bottom: 40px;">
-                        <h3>Guaranteed Quality</h3>
-                        <p>Every outlet uses identical, certified raw materials and spice blends to ensure the taste you love in Dulehra is the same taste you find district-wide.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. CUSTOMER REVIEWS SECTION -->
-    <section id="reviews" class="section reviews">
-        <div class="container">
-            <h2>Customer Reviews</h2>
-            <p class="section-subtitle">Show testimonials and ratings</p>
-            <div class="reviews-grid">
-                <div class="review-card card">
-                    <div>
-                        <div class="review-stars">⭐⭐⭐⭐打</div>
-                        <p class="review-text">"Best Momos in the area! The taste is so consistent, just like what we get in the city."</p>
-                    </div>
-                    <p class="review-author">Rahul Singh<br><span>Student, Dulehra</span></p>
-                </div>
-                <div class="review-card card accent-card">
-                    <div>
-                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
-                        <p class="review-text">"I always worry about the children eating outside, but with Masala Mint, I trust the hygiene. We love the lemonade!"</p>
-                    </div>
-                    <p class="review-author">Sunita Sharma<br><span>Mother, Bulandshahr</span></p>
-                </div>
-                <div class="review-card card">
-                    <div>
-                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
-                        <p class="review-text">"The friendliness of the vendor and the clean cart make eating here a great experience. The Veg Burger is magic."</p>
-                    </div>
-                    <p class="review-author">Amit Gupta<br><span>Local Farmer</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. SAFETY SECTION -->
-    <section id="safety" class="section safety">
-        <div class="container split-section">
-            <div>
-                <h2>Hygiene First</h2>
-                <p>We build trust through visibility. We operate under strict Standard Operating Procedures (SOPs) developed to provide complete peace of mind to our customers.</p>
-                <ul class="safety-list">
-                    <li>Mandatory Hair Caps</li>
-                    <li>Professional Uniform Aprons</li>
-                    <li>Daily Certified Gloves</li>
-                    <li>Purified Drinking Water</li>
-                    <li>Covered Food Storage</li>
-                    <li>Daily Deep Cleaning</li>
-                </ul>
-            </div>
-            <img src="hygiene-standards.png" alt="Masala Mint hygiene safety protocols close-up" class="feat-image">
-        </div>
-    </section>
-
-    <!-- 9. VENDOR SECTION -->
-    <section id="vendor" class="section vendor">
-        <div class="container split-section">
-            <img src="vendor-kit.jpg" alt="Masala Mint vendor startup kit and apron" class="feat-image">
-            <div>
-                <h2>Join Us as a Vendor</h2>
-                <p>Are you from a village cluster in Uttar Pradesh? Do you dream of running your own professional food business? Masala Mint provides the perfect opportunity.</p>
-                <h3>What We Provide</h3>
-                <p>We provide a complete startup package: a branded modern cart, comprehensive culinary training, the Masala Mint SOP certification, and marketing support.</p>
-                <a href="#contact" class="btn btn-primary">Inquire to Join</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 10. CONTACT SECTION -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <h2 class="contact-title">Contact Us</h2>
-            <p class="section-subtitle">Reach Out and Build a Cleaner Rural Future</p>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="icon-box">📧</div>
-                        <div>
-                            <h3>Email</h3>
-                            <p>hello@masalamint.in</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon-box">📞</div>
-                        <div>
-                            <h3>Phone</h3>
-                            <p>+91 (Sample Phone Number)</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon-box">💬</div>
-                        <div>
-                            <h3>WhatsApp</h3>
-                            <p>+91 (Sample WhatsApp Number)</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon-box">📍</div>
-                        <div>
-                            <h3>Location</h3>
-                            <p>Dulehra Cluster Office,<br>Bulandshahr, Uttar Pradesh</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-social">
-                    <h2>Social Media</h2>
-                    <p class="contact-social-p">Follow us on Instagram: <strong>@MasalaMintOfficial</strong></p>
-                    <a href="mailto:hello@masalamint.in" class="btn btn-primary">Send Email Inquiry</a>
-                    <div class="card accent-card highlight-box contact-card" style="margin-top: 30px; border-top:none; display:flex; align-items:center;">
-                        <h3>Certified Hygiene</h3>
-                        <p style="margin:0; font-size: 18px;">All Masala Mint outlets adhere to strict safety protocols, including CCTV monitoring, for complete customer confidence.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 11. FOOTER -->
+    <!-- Consistent Footer across pages -->
     <footer>
         <div class="container footer-grid">
             <div class="footer-logo">
                 <h2>Masala Mint</h2>
-                <p>A social entrepreneurship project standardizing rural food and empowering local economies.</p>
+                <p>A social entrepreneurship project standardizing rural food.</p>
             </div>
             <div>
                 <p class="footer-title">Explore</p>
                 <ul class="footer-links">
-                    <li><a href="#about">Our Story</a></li>
-                    <li><a href="#process">How it Works</a></li>
-                    <li><a href="#menu">Menu</a></li>
-                    <li><a href="#safety">Safety First</a></li>
-                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="story.html">Our Story</a></li>
+                    <li><a href="how-it-works.html">How it Works</a></li>
+                    <li><a href="order.html">Order</a></li>
                 </ul>
             </div>
             <div>
                 <p class="footer-title">Contact</p>
-                <p>Dulehra Cluster Office<br>Bulandshahr, Uttar Pradesh</p>
-                <p style="margin-top: 15px;">hello@masalamint.in</p>
+                <p>hello@masalamint.in</p>
             </div>
         </div>
         <div class="container footer-bottom">
-            <p>&copy; 2026 Masala Mint. An Entrepreneur Club Initiative. All Rights Reserved.</p>
+            <p>&copy; 2026 Masala Mint. All Rights Reserved.</p>
         </div>
     </footer>
-
-    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
-    <script>
-        var modal = document.getElementById("comingSoonModal");
-
-        function openModal() {
-            modal.style.display = "flex";
-        }
-
-        function closeModal() {
-            modal.style.display = "none";
-        }
-
-        // Live filtration engine matching top right bar query input strings
-        function filterSearch() {
-            var input = document.getElementById("menuSearch").value.toLowerCase();
-            var cards = document.getElementsByClassName("product-card");
-            
-            for (var i = 0; i < cards.length; i++) {
-                var productName = cards[i].getAttribute("data-name");
-                if (productName.includes(input)) {
-                    cards[i].style.display = "flex";
-                } else {
-                    cards[i].style.display = "none";
-                }
-            }
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
 
 </body>
 </html>
