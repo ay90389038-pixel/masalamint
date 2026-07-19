@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Become A Franchise Vendor | Masala Mint</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .modal-overlay {
-            display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
-        }
-        .modal-box {
-            background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%;
-            text-align: center; position: relative; border-top: 8px solid var(--accent);
-        }
-        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
-    </style>
 </head>
 <body>
 
@@ -30,41 +19,25 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html" class="active">Join Us</a>
-                <button class="btn btn-login" onclick="triggerLoginPopup()">Login</button>
+                <a href="login.html" class="btn-login">Login</a>
             </nav>
         </div>
     </header>
 
     <section class="section">
         <div class="container split-section">
-            <img src="vendor-kit.jpg" alt="Branded setup box recipe manual kit presentation" class="feat-image">
+            <img src="vendor-kit.jpg" alt="Branded setup manual kit" class="feat-image">
             <div>
                 <h2>Launch Your Scalable Micro-Franchise</h2>
-                <p>Are you looking to secure structured growth within an active commercial sector? Masala Mint provides end-to-end framework capabilities for local vendor teams.</p>
-                <p>Every active merchant gets complete toolkit distributions: customized clean heavy metal mobile machinery, full recipe instructions, uniforms, and digital dashboard units.</p>
-                <a href="mailto:hello@masalamint.in?subject=Franchise%20Onboarding%20Application" class="btn btn-primary" style="margin-top:15px;">Email Application</a>
+                <p>Masala Mint provides fully uniform distribution tools, clean cart hardware frameworks, and recipe operations support to local vendors.</p>
+                <a href="mailto:hello@masalamint.in?subject=Franchise%20Application" class="btn btn-primary">Email Application</a>
             </div>
         </div>
     </section>
-
-    <div id="popupBox" class="modal-overlay">
-        <div class="modal-box">
-            <span class="close-icon" onclick="dismissLoginPopup()">&times;</span>
-            <h2 style="color: var(--primary);">👤 Member Access</h2>
-            <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
-            <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissLoginPopup()">Got it</button>
-        </div>
-    </div>
 
     <footer>
         <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
     </footer>
 
-    <script>
-        var popup = document.getElementById("popupBox");
-        function triggerLoginPopup() { popup.style.display = "flex"; }
-        function dismissLoginPopup() { popup.style.display = "none"; }
-        window.onclick = function(event) { if (event.target == popup) { popup.style.display = "none"; } }
-    </script>
 </body>
 </html>
