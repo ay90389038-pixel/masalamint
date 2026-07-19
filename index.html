@@ -149,6 +149,95 @@
         .hero-content h1 { color: white; font-size: 80px; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 3px;}
         .hero-content p { color: rgba(255,255,255,0.95); font-size: 28px; max-width: 850px; margin: 0 auto 50px auto; font-style: normal; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px;}
 
+        /* [NEW] ORDER SECTION STYLES */
+        .order-section { background-color: #fff; text-align: center; }
+        .order-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+            margin-bottom: 60px;
+        }
+        .product-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        .product-card h4 { font-size: 24px; color: var(--dark); margin-bottom: 10px; }
+        .product-card .price { font-size: 22px; color: var(--primary); font-weight: bold; margin-bottom: 15px; }
+        
+        .partner-title-box {
+            border-top: 2px dashed #ccc;
+            padding-top: 50px;
+            margin-top: 50px;
+        }
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .partner-card {
+            background: #fff;
+            border-left: 6px solid var(--accent);
+            text-align: left;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        .partner-card h4 { font-size: 26px; color: var(--dark); margin-bottom: 5px;}
+        .partner-card p { font-size: 18px; margin-bottom: 15px; }
+
+        /* MODAL POPUP STYLES */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 16px;
+            max-width: 550px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-top: 8px solid var(--accent);
+            position: relative;
+            animation: modalFade 0.3s ease;
+        }
+        @keyframes modalFade {
+            from {transform: translateY(-20px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #aaa;
+        }
+        .close-btn:hover { color: #000; }
+
         /* 3. MENU SECTION */
         .menu-preview {
             background-color: var(--light);
@@ -339,7 +428,7 @@
             .split-section { grid-template-columns: 1fr; text-align: center; gap: 40px;}
             .section-title, .process h2, .why h2 { text-align: center !important; font-size: var(--font-h2) !important;}
             .feat-image { max-width: 600px; margin: 0 auto; }
-            .impact-grid, .reviews-grid, .safety-list, .contact-grid { grid-template-columns: 1fr !important; }
+            .impact-grid, .reviews-grid, .safety-list, .contact-grid, .order-grid, .partner-grid { grid-template-columns: 1fr !important; }
             .contact-item { flex-direction: column; text-align: center; }
             .contact-item .icon-box { margin-right: 0; margin-bottom: 15px;}
         }
@@ -369,6 +458,7 @@
                 <a href="#about">Story</a>
                 <a href="#process">How it Works</a>
                 <a href="#menu">Menu</a>
+                <a href="#order">Order Online</a>
                 <a href="#reviews">Reviews</a>
                 <a href="#vendor">Join Us</a>
                 <a href="#contact">Contact</a>
@@ -382,12 +472,89 @@
         <div class="container hero-content">
             <h1>MASALA MINT</h1>
             <p>TASTE THE MAGIC OF MASALA MINT!</p>
-            <a href="#about" class="btn btn-primary">Our Story</a>
+            <a href="#order" class="btn btn-primary">Order Now</a>
             <a href="#menu" class="btn btn-accent">View Menu</a>
         </div>
     </section>
 
-    <!-- LAUNCH NOTICE PAGE CONTAINER (UPDATED FORMAT) -->
+    <!-- [NEW] ORDER SECTION INTEGRATION -->
+    <section id="order" class="section order-section">
+        <div class="container">
+            <h2 class="section-title">Order Online</h2>
+            <p class="section-subtitle">Fresh Food, Standard Livelihoods</p>
+            
+            <h3 style="margin-bottom: 20px; text-align: left; color: var(--primary);">Our Menu Items</h3>
+            <div class="order-grid">
+                <!-- PRODUCT 1 -->
+                <div class="product-card" onclick="openModal()">
+                    <h4>Classic Veg Burger</h4>
+                    <p class="price">₹40</p>
+                    <button class="btn btn-accent" style="padding: 10px 20px; font-size: 14px;">Add to Cart</button>
+                </div>
+                <!-- PRODUCT 2 -->
+                <div class="product-card" onclick="openModal()">
+                    <h4>Steamed Momos</h4>
+                    <p class="price">₹30</p>
+                    <button class="btn btn-accent" style="padding: 10px 20px; font-size: 14px;">Add to Cart</button>
+                </div>
+                <!-- PRODUCT 3 -->
+                <div class="product-card" onclick="openModal()">
+                    <h4>Mint Lemonade</h4>
+                    <p class="price">₹20</p>
+                    <button class="btn btn-accent" style="padding: 10px 20px; font-size: 14px;">Add to Cart</button>
+                </div>
+                <!-- PRODUCT 4 -->
+                <div class="product-card" onclick="openModal()">
+                    <h4>Uttapam Mix</h4>
+                    <p class="price">₹25</p>
+                    <button class="btn btn-accent" style="padding: 10px 20px; font-size: 14px;">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- MID-LEVEL SHOP MARKETPLACE PARTNERS -->
+            <div class="partner-title-box">
+                <h3 style="text-align: left; color: #d35400;">Local Partner Kitchens & Shops</h3>
+                <p style="text-align: left; margin-bottom: 30px;">Order from our verified regional mid-level partner shops near your cluster active today:</p>
+            </div>
+            
+            <div class="partner-grid">
+                <!-- PARTNER 1 -->
+                <div class="partner-card">
+                    <h4>Sharma Sweets & Cafe</h4>
+                    <p style="color:#777; font-size:16px;">Dulehra Market Cluster</p>
+                    <p>Famous for fresh local North Indian meals and sweet snacks.</p>
+                    <a href="https://www.zomato.com" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Order on Zomato</a>
+                </div>
+                <!-- PARTNER 2 -->
+                <div class="partner-card">
+                    <h4>Royal Bakers</h4>
+                    <p style="color:#777; font-size:16px;">Bulandshahr Central</p>
+                    <p>Premium local bakery providing fresh cakes, buns, and evening pastries.</p>
+                    <a href="https://www.swiggy.com" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Order on Swiggy</a>
+                </div>
+                <!-- PARTNER 3 -->
+                <div class="partner-card">
+                    <h4>Krishna Dosa Point</h4>
+                    <p style="color:#777; font-size:16px;">Siyana Road Junction</p>
+                    <p>Highly rated mid-tier South Indian fast food point serving the district.</p>
+                    <a href="https://www.zomato.com" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Order on Zomato</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMING SOON MODAL POPUP BOX -->
+    <div id="comingSoonModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 style="color: #d35400; margin-bottom: 15px;">🚀 Coming Soon!</h2>
+            <h3 style="font-size: 24px;">Masala Mint Cloud Kitchen</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Our official ordering system and localized delivery platform are launching shortly. We are working hard to prepare your favorites with complete automated hygiene!</p>
+            <button class="btn btn-primary" onclick="closeModal()">Got it, Thanks!</button>
+        </div>
+    </div>
+
+    <!-- LAUNCH NOTICE PAGE CONTAINER -->
     <section class="section launch-notice">
         <div class="container split-section">
             <div>
@@ -398,7 +565,6 @@
                     <p style="margin: 0; font-weight: bold; color: var(--dark);">Stay tuned for the official launch!</p>
                 </div>
             </div>
-            <!-- FIXED TO USE THE NEW .png NAME -->
             <img src="cloud-kitchen-launch.png" alt="Masala Mint delivery personnel handing over food box order" class="feat-image">
         </div>
     </section>
@@ -510,7 +676,7 @@
         </div>
     </section>
 
-    <!-- 8. SAFETY SECTION (UPDATED FORMAT) -->
+    <!-- 8. SAFETY SECTION -->
     <section id="safety" class="section safety">
         <div class="container split-section">
             <div>
@@ -525,7 +691,6 @@
                     <li>Daily Deep Cleaning</li>
                 </ul>
             </div>
-            <!-- FIXED TO USE THE NEW .png NAME -->
             <img src="hygiene-standards.png" alt="Masala Mint hygiene safety protocols close-up" class="feat-image">
         </div>
     </section>
@@ -621,6 +786,26 @@
             <p>&copy; 2026 Masala Mint. An Entrepreneur Club Initiative. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT FOR THE MODAL BOX -->
+    <script>
+        var modal = document.getElementById("comingSoonModal");
+
+        function openModal() {
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close modal if user clicks anywhere outside of the box
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>
