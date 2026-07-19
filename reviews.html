@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | Masala Mint</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .review-card {
+            background-color: var(--light);
+            text-align: left;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        .review-stars { color: #f9c74f; font-size: 1.4em; margin-bottom: 10px;}
+        .review-author { font-size: 16px; font-weight: bold; color: var(--dark); margin-top: 15px;}
+        @media (max-width: 992px) { .reviews-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><h1>Masala <span>Mint</span></h1></a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="story.html">Story</a>
+                <a href="how-it-works.html">How it Works</a>
+                <a href="order.html">Order</a>
+                <a href="safety.html">Safety First</a>
+                <a href="reviews.html" class="active">Reviews</a>
+                <a href="join-us.html">Join Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section reviews-page">
+        <div class="container">
+            <h2 class="section-title">Community Feedback</h2>
+            <p class="section-subtitle">What our early cluster locations are saying</p>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Best Momos in the area! The taste is so consistent, just like what we get in the city."</p>
+                    <p class="review-author">— Rahul Singh, Student (Dulehra)</p>
+                </div>
+                <div class="review-card" style="border-top: 4px solid var(--accent);">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p>"I always worry about the children eating outside, but with Masala Mint, I trust the hygiene. We love the lemonade!"</p>
+                    <p class="review-author">— Sunita Sharma, Mother (Bulandshahr)</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p>"The friendliness of the vendor and the clean cart make eating here a great experience. The Veg Burger is magic."</p>
+                    <p class="review-author">— Amit Gupta, Local Farmer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Masala Mint. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
