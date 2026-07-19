@@ -108,9 +108,9 @@
             object-fit: cover;
         }
 
-        /* ICONS MOCKUPS (Using simple bullet styling for prototype) */
+        /* ICONS MOCKUPS */
         .icon-list li::before {
-            content: '✦'; /* Simple illustrative icon */
+            content: '✦'; 
             color: var(--accent);
             margin-right: 15px;
             font-size: 1.1em;
@@ -136,7 +136,7 @@
         .nav-links { display: flex; gap: 30px; font-weight: 500; font-size: var(--font-nav);}
         .nav-links a:hover { color: var(--primary); }
 
-        /* 2. HERO SECTION (Numberless magic) */
+        /* 2. HERO SECTION */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('hero_magic.jpg') no-repeat center center/cover;
@@ -185,9 +185,9 @@
         }
         .safety-list li::before { content: '✓'; color: var(--primary); font-weight: bold; font-size: 1.3em; }
 
-        /* [NEW] 5. HOW IT WORKS (Number Removed) */
+        /* 5. HOW IT WORKS */
         .process { background-color: var(--light); }
-        .process h2 { color: var(--dark); text-align: center; letter-spacing: 3px; font-size: var(--font-h2); text-transform: uppercase; }
+        .process h2 { color: var(--dark); text-transform: uppercase; text-align: center; letter-spacing: 3px; font-size: var(--font-h2); }
         .process h3 { font-size: var(--font-h3); margin-top: 15px; }
         .process p { font-size: var(--font-p); }
         .process ol {
@@ -211,17 +211,14 @@
             font-size: 1.1em;
         }
 
-        /* [NEW] 6. WHY CHOOSE US (Number Removed) */
+        /* 6. WHY CHOOSE US */
         .why { background-color: #fff; }
         .why h2 { color: var(--dark); text-transform: uppercase; text-align: center; letter-spacing: 3px; font-size: var(--font-h2); }
         .why h3 { font-size: var(--font-h3); margin-top: 15px;}
         .why ul { margin-top: 25px; margin-bottom: 30px;}
         .why ul li { font-size: var(--font-p); margin-bottom: 10px; display: flex; align-items: center;}
-        
-        /* CVP ICONS */
-        .why ul li img { width: 30px; height: 30px; margin-right: 15px;}
 
-        /* [NEW] 7. REVIEWS (Number Removed) */
+        /* 7. REVIEWS */
         .reviews { background-color: var(--light); text-align: center;}
         .reviews-grid {
             display: grid;
@@ -235,7 +232,7 @@
             border-radius: 12px;
             padding: 30px;
             box-shadow: var(--shadow);
-            border-top: none; /* Just simple borders */
+            border-top: none; 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -245,7 +242,7 @@
         .review-author { font-size: var(--font-small); font-weight: 500; color: var(--text);}
         .review-author span { color: #777; }
 
-        /* [NEW] 8. CONTACT SECTION (Number Removed) */
+        /* 8. CONTACT SECTION */
         .contact { background-color: var(--light); text-align: center;}
         .contact-title { font-size: var(--font-h2); text-transform: uppercase; color: var(--dark); letter-spacing: 3px;}
         .contact-grid {
@@ -300,7 +297,13 @@
         .vendor { background-color: #fff; }
         .vendor h3 { margin-top: 25px; font-size: var(--font-h3); }
 
-        /* 11. FOOTER */
+        /* 11. LAUNCH NOTICE SECTION */
+        .launch-notice {
+            background-color: #fff3e0;
+            border-left: 8px solid var(--accent);
+        }
+
+        /* 12. FOOTER */
         footer {
             background-color: #111;
             color: rgba(255,255,255,0.7);
@@ -324,7 +327,7 @@
             font-size: var(--font-small);
         }
 
-        /* RESPONSIVE MEDIA QUERIES (Updated for scaled font) */
+        /* RESPONSIVE MEDIA QUERIES */
         @media (max-width: 992px) {
             :root {
                 --font-h1: 52px;
@@ -384,7 +387,23 @@
         </div>
     </section>
 
-    <!-- [UPDATED] 3. HOW IT WORKS SECTION (Number Removed) -->
+    <!-- [NEW ADDITION] LAUNCH NOTICE PAGE CONTAINER -->
+    <section class="section launch-notice">
+        <div class="container split-section">
+            <div>
+                <h2 class="section-title" style="text-align: left; color: #d35400;">🌟 Exciting News! 🌟</h2>
+                <h3>Masala Mint Cloud Kitchen is Coming Soon!</h3>
+                <p>Order your favourite Masala Mint meals online through our website and leading delivery platforms. Fresh food, prepared with the same trusted quality and delivered straight to your doorstep.</p>
+                <div class="highlight-box card" style="border-top-color: var(--accent); background: white;">
+                    <p style="margin: 0; font-weight: bold; color: var(--dark);">Stay tuned for the official launch!</p>
+                </div>
+            </div>
+            <!-- ONLINE DELIVERY IMAGE -->
+            <img src="https://images.squarespace-cdn.com/content/v1/5c13f6409f877041a774b77f/d91bc541-11d2-4fe2-92df-a720dc55f67b/image_0.png?format=1000w" alt="Masala Mint delivery personnel handing over food box order" class="feat-image">
+        </div>
+    </section>
+
+    <!-- 3. HOW IT WORKS SECTION -->
     <section id="process" class="section process">
         <div class="container split-section">
             <div>
@@ -392,39 +411,36 @@
                 <h3>A Simple, Scalable Flow</h3>
                 <p>We believe in methodical expansion that guarantees quality at every doorstep. This is how we bring Masala Mint to you:</p>
                 <ol>
-                    <li>Select Village Cluster</li>
-                    <li>Recruit Local Vendor</li>
-                    <li>Comprehensive Vendor Training</li>
-                    <li>Setup Branded Cart</li>
-                    <li>Daily Quality Checks</li>
-                    <li>Expand to Nearby Villages</li>
+                    <li>Select village</li>
+                    <li>Recruit local vendor</li>
+                    <li>Train vendor</li>
+                    <li>Set up branded cart</li>
+                    <li>Daily quality checks</li>
+                    <li>Expand to nearby villages</li>
                 </ol>
-                <div class="highlight-box card accent-card" style="border-top:none; margin-top:0;">
-                    <p><strong>Proven Model:</strong> This methodical, micro-franchise approach ensures we maintain our strict standards of hygiene and taste while generating reliable rural livelihoods.</p>
-                </div>
             </div>
-            <!-- PROCESS FLOW ILLUSTRATIVE IMAGE A -->
+            <!-- PROCESS FLOW IMAGE -->
             <img src="process-flow.jpg" alt="Illustrative image of process flow: planning expansion and training a vendor" class="feat-image">
         </div>
     </section>
 
-    <!-- [UPDATED] 4. WHY CHOOSE US SECTION (Number Removed) -->
+    <!-- 4. WHY CHOOSE US SECTION -->
     <section id="cvp" class="section why">
         <div class="container split-section">
-             <!-- QUALITY CONTROL ILLUSTRATIVE IMAGE B -->
+             <!-- QUALITY CONTROL IMAGE -->
             <img src="quality-control.jpg" alt="Illustrative image of quality control: fresh ingredients and a branded cart." class="feat-image">
             <div>
                 <h2>Why Choose Masala Mint?</h2>
                 <h3>The Magic is in Our Standards</h3>
                 <p>Roadside vending often requires compromise. At Masala Mint, we believe you deserve taste, safety, and reliability without compromise.</p>
                 <ul class="why-list icon-list">
-                    <li>Hygienic Food (Guaranteed)</li>
-                    <li>Affordability</li>
-                    <li>Standard Recipes (Consistent Taste)</li>
-                    <li>Trained Professional Vendors</li>
-                    <li>CCTV Monitoring (for Safety)</li>
-                    <li>Fresh Ingredients (Daily Supply)</li>
-                    <li>Friendly & Reliable Service</li>
+                    <li>Hygienic Food</li>
+                    <li>Affordable Prices</li>
+                    <li>Standard Recipes</li>
+                    <li>Trained Vendors</li>
+                    <li>CCTV Monitoring</li>
+                    <li>Fresh Ingredients</li>
+                    <li>Friendly Service</li>
                 </ul>
                 <a href="#menu" class="btn btn-accent">Experience the Magic</a>
             </div>
@@ -439,7 +455,6 @@
                 <p>Roadside food in villages often lacks consistency and hygiene. We are solving this. **Masala Mint** brings standardized recipes, professional food carts, and certified safety protocols to rural communities.</p>
                 <p>We operate via branded food carts, replacing unbranded, irregular setups with reliable, clean micro-franchises. Our dream is to become India's most trusted rural street food brand.</p>
             </div>
-            <!-- PRODUCT IMAGE 1 -->
             <img src="hero_magic.jpg" alt="Masala Mint food cart operating in village" class="feat-image">
         </div>
     </section>
@@ -467,11 +482,11 @@
         </div>
     </section>
 
-    <!-- [UPDATED] 7. CUSTOMER REVIEWS SECTION (Number Removed) -->
+    <!-- 7. CUSTOMER REVIEWS SECTION -->
     <section id="reviews" class="section reviews">
         <div class="container">
             <h2>Customer Reviews</h2>
-            <p class="section-subtitle">What Our Village Communities Say</p>
+            <p class="section-subtitle">Show testimonials and ratings</p>
             <div class="reviews-grid">
                 <!-- REVIEW 1 -->
                 <div class="review-card card">
@@ -516,18 +531,16 @@
                     <li>Daily Deep Cleaning</li>
                 </ul>
             </div>
-            <!-- HYGIENE SOP IMAGE EXTERNAL SOURCED -->
-            <img src="hygiene-standards.jpg" alt="Masala Mint hygiene safety protocols close-up" class="feat-image">
+            <img src="https://images.squarespace-cdn.com/content/v1/5c13f6409f877041a774b77f/222d4f55-144b-483a-86a0-5c68ff80145a/image_0.png?format=1000w" alt="Masala Mint hygiene safety protocols close-up" class="feat-image">
         </div>
     </section>
 
     <!-- 9. VENDOR SECTION -->
     <section id="vendor" class="section vendor">
         <div class="container split-section">
-            <!-- VENDOR KIT IMAGE -->
             <img src="vendor-kit.jpg" alt="Masala Mint vendor startup kit and apron" class="feat-image">
             <div>
-                <h2 class="section-title" style="text-align: left;">Join Us as a Vendor</h2>
+                <h2>Join Us as a Vendor</h2>
                 <p>Are you from a village cluster in Uttar Pradesh? Do you dream of running your own professional food business? Masala Mint provides the perfect opportunity.</p>
                 <h3>What We Provide</h3>
                 <p>We provide a complete startup package: a branded modern cart, comprehensive culinary training, the Masala Mint SOP certification, and marketing support.</p>
@@ -536,29 +549,7 @@
         </div>
     </section>
 
-    <!-- 10. IMPACT SECTION (Maintain existing scale) -->
-    <section id="impact" class="section impact">
-        <div class="container">
-            <h2>Our Social Impact</h2>
-            <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">More Than Just Food</p>
-            <div class="impact-grid">
-                <div class="card impact-card">
-                    <h3>Employment</h3>
-                    <p>Generating sustainable local jobs by empowering micro-entrepreneurs.</p>
-                </div>
-                <div class="card impact-card accent-card">
-                    <h3>Skill Building</h3>
-                    <p>Certified training in professional food prep, customer service, and hygiene.</p>
-                </div>
-                <div class="card impact-card">
-                    <h3>Eco-Friendly</h3>
-                    <p>Commited to zero littering and leaf-based, sustainable packaging.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- [UPDATED] 11. CONTACT SECTION (Number Removed) -->
+    <!-- 10. CONTACT SECTION -->
     <section id="contact" class="section contact">
         <div class="container">
             <h2 class="contact-title">Contact Us</h2>
@@ -600,7 +591,7 @@
                 </div>
                 
                 <div class="contact-social">
-                    <h2>Masala Mint Social Media</h2>
+                    <h2>Social Media</h2>
                     <p class="contact-social-p">Follow us on Instagram: <strong>@MasalaMintOfficial</strong></p>
                     <a href="mailto:hello@masalamint.in" class="btn btn-primary">Send Email Inquiry</a>
                     <div class="card accent-card highlight-box contact-card" style="margin-top: 30px; border-top:none; display:flex; align-items:center;">
@@ -612,7 +603,7 @@
         </div>
     </section>
 
-    <!-- 12. FOOTER (Updated Sizing & Numberless Links) -->
+    <!-- 11. FOOTER -->
     <footer>
         <div class="container footer-grid">
             <div class="footer-logo">
@@ -636,7 +627,7 @@
             </div>
         </div>
         <div class="container footer-bottom">
-            <p>&copy; 2024 Masala Mint. An Entrepreneur Club Initiative. All Rights Reserved.</p>
+            <p>&copy; 2026 Masala Mint. An Entrepreneur Club Initiative. All Rights Reserved.</p>
         </div>
     </footer>
 
