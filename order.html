@@ -6,128 +6,50 @@
     <title>Order Online Menu Hub | Masala Mint</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* =========================================
-           ORDER PAGE SPECIFIC STYLES
-           ========================================= */
-
-        /* 1. DEDICATED SEARCH ROW */
         .search-wrapper {
-            background-color: var(--light);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+            background-color: var(--light); padding: 25px; border-radius: 12px;
+            margin-bottom: 20px; display: flex; justify-content: center; align-items: center;
+            gap: 15px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
         }
         .order-search-input {
-            width: 100%;
-            max-width: 500px;
-            padding: 14px 20px;
-            border-radius: 30px;
-            border: 2px solid #ddd;
-            font-size: 18px;
-            transition: all 0.3s;
+            width: 100%; max-width: 500px; padding: 14px 20px; border-radius: 30px;
+            border: 2px solid #ddd; font-size: 18px; transition: all 0.3s;
         }
-        .order-search-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 10px rgba(45,106,79,0.1); }
+        .order-search-input:focus { outline: none; border-color: var(--primary); }
 
-        /* 2. NEW: HORIZONTAL SUB-CATEGORY NAVIGATION */
-        .category-nav-wrapper {
-            background-color: #fff;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 80px; /* Sticks below main header */
-            z-index: 900;
-            margin-bottom: 40px;
-        }
-        .category-nav {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto; /* Allows horizontal scroll on mobile */
-            white-space: nowrap;
-            padding-bottom: 5px; /* space for scrollbar */
-        }
-        /* Hide scrollbar for clean look */
+        .category-nav-wrapper { background-color: #fff; padding: 15px 0; border-bottom: 1px solid #eee; position: sticky; top: 80px; z-index: 900; margin-bottom: 40px; }
+        .category-nav { display: flex; gap: 15px; overflow-x: auto; white-space: nowrap; padding-bottom: 5px; }
         .category-nav::-webkit-scrollbar { display: none; }
-        .category-nav { -ms-overflow-style: none;  scrollbar-width: none; }
+        .category-btn { background-color: var(--light); color: var(--primary); padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer; border: 1px solid transparent; flex-shrink: 0; }
+        .category-btn:hover, .category-btn.active { background-color: var(--primary); color: #fff; }
 
-        .category-btn {
-            background-color: var(--light);
-            color: var(--primary);
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-            flex-shrink: 0; /* Prevents shrinking in flex layout */
-        }
-        .category-btn:hover, .category-btn.active {
-            background-color: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-        }
-
-        /* 3. PRODUCT GRID & CARDS */
-        /* Offset anchors for smooth scrolling to sections below the fixed navs */
         .category-section { scroll-margin-top: 160px; margin-bottom: 60px; }
-
-        .category-heading {
-            text-align: left;
-            color: var(--primary);
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-            font-size: var(--font-h3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .order-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-        .product-card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid #eee;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); border-color: var(--primary); }
-        .product-img { width: 100%; height: 200px; object-fit: cover; background: #e2e8f0; }
+        .category-heading { text-align: left; color: var(--primary); padding-bottom: 10px; margin-bottom: 25px; font-size: var(--font-h3); text-transform: uppercase; }
+        
+        .order-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee; transition: all 0.3s ease; cursor: pointer; display: flex; flex-direction: column; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-img { width: 100%; height: 200px; object-fit: cover; }
         .product-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
         .product-info h4 { font-size: 22px; margin-bottom: 8px; color: var(--dark); }
         .product-info p { font-size: 15px; color: #666; margin-bottom: 15px; line-height: 1.4; flex-grow:1;}
         .product-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
         .product-price { font-size: 22px; font-weight: bold; color: var(--primary); }
 
-        /* 4. MODAL OVERLAY STYLES */
-        .modal-overlay {
-            display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
-        }
-        .modal-box {
-            background: #fff; padding: 45px; border-radius: 166px; max-width: 500px; width: 90%;
-            text-align: center; position: relative; border-top: 8px solid var(--accent);
-        }
+        .partner-title-box { border-top: 2px dashed #ccc; padding-top: 50px; margin-top: 50px; scroll-margin-top: 160px; }
+        .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px; }
+        .partner-card { background: #fff; border-left: 6px solid var(--accent); padding: 30px; border-radius: 8px; box-shadow: var(--shadow); cursor: pointer; }
+
+        .modal-overlay { display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
+        .modal-box { background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%; text-align: center; position: relative; border-top: 8px solid var(--accent); }
         .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
 
-        @media (max-width: 1200px) { .order-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 1200px) { .order-grid { grid-template-columns: repeat(2, 1fr); } .partner-grid { grid-template-columns: 1fr; } }
         @media (max-width: 650px) { .order-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <!-- Consistent Header with LOGIN Option -->
     <header>
         <div class="container">
             <div class="logo"><a href="index.html"><h1>Masala <span>Mint</span></h1></a></div>
@@ -139,7 +61,6 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html">Join Us</a>
-                <!-- NEW: LOGIN OPTION -->
                 <button class="btn btn-login" onclick="triggerPopup('login')">Login</button>
             </nav>
         </div>
@@ -150,14 +71,12 @@
             <h2 class="section-title">Order Marketplace Catalog</h2>
             <p class="section-subtitle">Fresh internal hub categories prepared securely under strict standards</p>
             
-            <!-- EXCLUSIVE DEDICATED SEARCH ROW -->
             <div class="search-wrapper">
                 <span>🔍</span>
                 <input type="text" id="internalSearch" class="order-search-input" placeholder="Search product across all sections..." onkeyup="runGridSearch()">
             </div>
         </div>
 
-        <!-- NEW: HORIZONTAL SUB-CATEGORY NAVIGATION (Fixed on scroll) -->
         <div class="category-nav-wrapper">
             <div class="container">
                 <div class="category-nav" id="categoryNav">
@@ -165,12 +84,13 @@
                     <button class="category-btn" onclick="scrollToSection('fruits', this)">Fresh Fruits</button>
                     <button class="category-btn" onclick="scrollToSection('veg', this)">Vegetables</button>
                     <button class="category-btn" onclick="scrollToSection('beverages', this)">Beverages</button>
+                    <button class="category-btn" onclick="scrollToSection('partners', this)">Partner Shops</button>
                 </div>
             </div>
         </div>
 
         <div class="container">
-            <!-- SUB SECTION 1: FAST FOOD -->
+            <!-- FAST FOOD -->
             <div id="fastfood" class="category-section">
                 <h3 class="category-heading">🍿 Standardized Fast Food</h3>
                 <div class="order-grid">
@@ -201,7 +121,7 @@
                 </div>
             </div>
 
-            <!-- SUB SECTION 2: FRESH FRUITS -->
+            <!-- FRUITS -->
             <div id="fruits" class="category-section">
                 <h3 class="category-heading">🍎 Fresh Organic Fruits</h3>
                 <div class="order-grid">
@@ -224,7 +144,7 @@
                 </div>
             </div>
 
-            <!-- SUB SECTION 3: VEGETABLES -->
+            <!-- VEGETABLES -->
             <div id="veg" class="category-section">
                 <h3 class="category-heading">🥦 Fresh Local Vegetables</h3>
                 <div class="order-grid">
@@ -247,7 +167,7 @@
                 </div>
             </div>
 
-            <!-- SUB SECTION 4: BEVERAGES -->
+            <!-- BEVERAGES -->
             <div id="beverages" class="category-section">
                 <h3 class="category-heading">🥤 House Crafted Beverages</h3>
                 <div class="order-grid">
@@ -270,51 +190,64 @@
                 </div>
             </div>
 
+            <!-- PARTNERS -->
+            <div id="partners" class="partner-title-box category-section">
+                <h3 class="category-heading" style="color: #d35400;">🤝 Verified Partner Kitchens</h3>
+                <div class="partner-grid">
+                    <div class="partner-card" onclick="triggerPopup('partner')">
+                        <h4>Sharma Sweets & Cafe</h4>
+                        <p>Famous for fresh regional North Indian meals and traditional dairy delicacies.</p>
+                    </div>
+                    <div class="partner-card" onclick="triggerPopup('partner')">
+                        <h4>Royal Bakers</h4>
+                        <p>Providing custom celebration confectionery, multi-grain sandwich breads, and baked rolls.</p>
+                    </div>
+                    <div class="partner-card" onclick="triggerPopup('partner')">
+                        <h4>Krishna Dosa Point</h4>
+                        <p>High-turnover South Indian kitchen serving verified clean idlis, dosas, and sambhar variants.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- UNIFIED POPUP DIALOG MODULE (Supports both Order & Login messages) -->
     <div id="popupBox" class="modal-overlay">
         <div class="modal-box">
             <span class="close-icon" onclick="dismissPopup()">&times;</span>
             <div id="modalContentOrder">
                 <h2 style="color: #d35400;">🚀 Launching Shortly</h2>
-                <p style="margin-top:20px; font-size:18px;">Our completely direct internal shipping checkout channels are being validated right now. No external multi-apps required—checkout clears natively here soon!</p>
+                <p style="margin-top:20px; font-size:18px;">Our completely direct internal shipping checkout channels are being validated right now. Checkout clears natively here soon!</p>
             </div>
             <div id="modalContentLogin" style="display:none;">
                 <h2 style="color: var(--primary);">👤 Member Access</h2>
-                <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
+                <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login will activate during the official Cloud Kitchen rollout.</p>
+            </div>
+            <div id="modalContentPartner" style="display:none;">
+                <h2 style="color: #d35400;">🏢 Unified Logistics Processing</h2>
+                <p style="margin-top:20px; font-size:18px;">Partner kitchen items are currently being mapped directly into the internal Masala Mint fleet network. Natively routed deliveries will bypass third-party platforms soon.</p>
             </div>
             <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissPopup()">Got it</button>
         </div>
     </div>
 
-    <!-- Consistent Footer -->
     <footer>
         <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
-        // 1. Popup Logic (Updated to handle Login vs Order messages)
         var popup = document.getElementById("popupBox");
         var contentOrder = document.getElementById("modalContentOrder");
         var contentLogin = document.getElementById("modalContentLogin");
+        var contentPartner = document.getElementById("modalContentPartner");
 
         function triggerPopup(type) {
-            if (type === 'login') {
-                contentOrder.style.display = "none";
-                contentLogin.style.display = "block";
-            } else {
-                contentOrder.style.display = "block";
-                contentLogin.style.display = "none";
-            }
+            contentOrder.style.display = "none"; contentLogin.style.display = "none"; contentPartner.style.display = "none";
+            if (type === 'login') contentLogin.style.display = "block";
+            else if (type === 'partner') contentPartner.style.display = "block";
+            else contentOrder.style.display = "block";
             popup.style.display = "flex";
         }
-
         function dismissPopup() { popup.style.display = "none"; }
-        
-        // 2. Live Grid Search Logic
         function runGridSearch() {
             var searchTxt = document.getElementById("internalSearch").value.toLowerCase();
             var items = document.getElementsByClassName("product-card");
@@ -323,20 +256,12 @@
                 items[i].style.display = nameAttr.includes(searchTxt) ? "flex" : "none";
             }
         }
-
-        // 3. NEW: Horizontal Category Nav Logic
         function scrollToSection(sectionId, btn) {
-            // Smooth scroll to the target section
             document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-
-            // Update Active button state
             var buttons = document.getElementsByClassName("category-btn");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("active");
-            }
+            for (var i = 0; i < buttons.length; i++) buttons[i].classList.remove("active");
             btn.classList.add("active");
         }
     </script>
-
 </body>
 </html>
