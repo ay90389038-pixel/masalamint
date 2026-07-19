@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How it Works | The Masala Mint Process</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific list styles for this page */
+        .process ol {
+            font-size: var(--font-p);
+            counter-reset: my-counter;
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .process ol li {
+            counter-increment: my-counter;
+            position: relative;
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary);
+        }
+        .process ol li::before {
+            content: counter(my-counter) ".";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-right: 15px;
+        }
+        @media (max-width: 768px) { .process ol { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <!-- Consistent Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><h1>Masala <span>Mint</span></h1></a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="story.html">Story</a>
+                <a href="how-it-works.html" class="active">How it Works</a>
+                <a href="order.html">Order</a>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-bar" placeholder="Search...">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section process-page">
+        <div class="container">
+            <h2 class="section-title">The Masala Mint Method</h2>
+            <p class="section-subtitle">How We bring Standardization to Villages</p>
+            
+            <div class="split-section">
+                <div>
+                    <h3>methodical Expansion</h3>
+                    <p>We don't expand randomly. We build trusted hubs in specific village clusters, ensuring quality stays perfect as we grow.</p>
+                </div>
+                <img src="process-flow.jpg" alt="Team mapping village expansion" class="feat-image">
+            </div>
+
+            <div class="section process">
+                <h3>Our Simple, Scalable Flow</h3>
+                <p>This flow is implemented in every new operational hub:</p>
+                <ol>
+                    <li>Cluster Identification & Mapping</li>
+                    <li>Local Vendor Identification & Vetting</li>
+                    <li>Culinary & Hygiene Training (SOP Certification)</li>
+                    <li>Branded Mobile Cart Deployment</li>
+                    <li>Daily Raw Material Supply & Quality Audits</li>
+                    <li>Integrated District Logistics Hub Activation</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Consistent Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-logo">
+                <h2>Masala Mint</h2>
+                <p>Standardizing rural food.</p>
+            </div>
+            <div>
+                <p class="footer-title">Explore</p>
+                <ul class="footer-links">
+                    <li><a href="story.html">Our Story</a></li>
+                    <li><a href="how-it-works.html">How it Works</a></li>
+                    <li><a href="order.html">Order</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="footer-title">Contact</p>
+                <p>hello@masalamint.in</p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Masala Mint. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
