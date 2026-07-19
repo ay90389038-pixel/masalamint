@@ -3,48 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Online Menu Hub | Masala Mint</title>
+    <title>Order Catalog Hub | Masala Mint</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .search-wrapper {
-            background-color: var(--light); padding: 25px; border-radius: 12px;
-            margin-bottom: 20px; display: flex; justify-content: center; align-items: center;
-            gap: 15px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
-        }
-        .order-search-input {
-            width: 100%; max-width: 500px; padding: 14px 20px; border-radius: 30px;
-            border: 2px solid #ddd; font-size: 18px; transition: all 0.3s;
-        }
-        .order-search-input:focus { outline: none; border-color: var(--primary); }
-
-        .category-nav-wrapper { background-color: #fff; padding: 15px 0; border-bottom: 1px solid #eee; position: sticky; top: 80px; z-index: 900; margin-bottom: 40px; }
-        .category-nav { display: flex; gap: 15px; overflow-x: auto; white-space: nowrap; padding-bottom: 5px; }
+        .search-wrapper { background-color: var(--light); padding: 25px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; gap: 15px; }
+        .order-search-input { width: 100%; max-width: 500px; padding: 14px 20px; border-radius: 30px; border: 2px solid #ddd; font-size: 18px; }
+        
+        /* FIXED STICKY HORIZONTAL CATEGORIES BAR */
+        .category-nav-wrapper { background-color: #fff; padding: 15px 0; border-bottom: 1px solid #eee; position: sticky; top: 78px; z-index: 900; margin-bottom: 40px; }
+        .category-nav { display: flex; gap: 15px; overflow-x: auto; white-space: nowrap; }
         .category-nav::-webkit-scrollbar { display: none; }
-        .category-btn { background-color: var(--light); color: var(--primary); padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer; border: 1px solid transparent; flex-shrink: 0; }
-        .category-btn:hover, .category-btn.active { background-color: var(--primary); color: #fff; }
+        .category-btn { background-color: var(--light); color: var(--primary); padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer; border: 1px solid transparent; }
+        .category-btn.active { background-color: var(--primary); color: #fff; }
 
         .category-section { scroll-margin-top: 160px; margin-bottom: 60px; }
         .category-heading { text-align: left; color: var(--primary); padding-bottom: 10px; margin-bottom: 25px; font-size: var(--font-h3); text-transform: uppercase; }
-        
-        .order-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-        .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee; transition: all 0.3s ease; cursor: pointer; display: flex; flex-direction: column; }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-img { width: 100%; height: 200px; object-fit: cover; }
-        .product-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-info h4 { font-size: 22px; margin-bottom: 8px; color: var(--dark); }
-        .product-info p { font-size: 15px; color: #666; margin-bottom: 15px; line-height: 1.4; flex-grow:1;}
-        .product-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
-        .product-price { font-size: 22px; font-weight: bold; color: var(--primary); }
 
-        .partner-title-box { border-top: 2px dashed #ccc; padding-top: 50px; margin-top: 50px; scroll-margin-top: 160px; }
+        .order-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee; display: flex; flex-direction: column; }
+        .product-img { width: 100%; height: 180px; object-fit: cover; background: #e2e8f0; }
+        .product-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-info h4 { font-size: 20px; margin-bottom: 8px; color: var(--dark); }
+        .product-info p { font-size: 14px; color: #666; margin-bottom: 15px; flex-grow: 1; }
+        .product-meta { display: flex; justify-content: space-between; align-items: center; }
+        .product-price { font-size: 20px; font-weight: bold; color: var(--primary); }
+
+        /* FLOATING CART CONTROLLER */
+        .floating-cart-trigger { position: fixed; bottom: 30px; right: 30px; background: var(--accent); color: var(--dark); padding: 15px 30px; border-radius: 50px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; z-index: 2000; display: flex; align-items: center; gap: 10px; }
+        
+        /* SIDE CART SLIDE OUT DRAWER */
+        .cart-drawer { position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background: #fff; box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 3000; transition: right 0.3s ease; display: flex; flex-direction: column; padding: 30px; }
+        .cart-drawer.open { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+        .cart-items-list { flex-grow: 1; overflow-y: auto; }
+        .cart-item-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 16px; border-bottom: 1px dashed #eee; padding-bottom: 10px; }
+        .cart-total-footer { border-top: 2px solid #eee; padding-top: 20px; margin-top: 20px; }
+
+        /* PAYMENT STEP UNDER DEVELOPMENT POPUP MODAL */
+        .modal-overlay { display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
+        .modal-box { background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%; text-align: center; border-top: 8px solid var(--accent); position: relative; }
+        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
+
+        .partner-title-box { border-top: 2px dashed #ccc; padding-top: 50px; margin-top: 50px; }
         .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px; }
         .partner-card { background: #fff; border-left: 6px solid var(--accent); padding: 30px; border-radius: 8px; box-shadow: var(--shadow); cursor: pointer; }
 
-        .modal-overlay { display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
-        .modal-box { background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%; text-align: center; position: relative; border-top: 8px solid var(--accent); }
-        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
-
-        @media (max-width: 1200px) { .order-grid { grid-template-columns: repeat(2, 1fr); } .partner-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1200px) { .order-grid { grid-template-columns: repeat(2, 1fr); } .partner-grid { grid-template-columns: 1fr; } .cart-drawer { width: 100%; right: -100%; } }
         @media (max-width: 650px) { .order-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -61,25 +65,47 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html">Join Us</a>
-                <button class="btn btn-login" onclick="triggerPopup('login')">Login</button>
+                <a href="login.html" class="btn-login">Login</a>
             </nav>
         </div>
     </header>
 
+    <!-- FLOATING CART CONTAINER -->
+    <div class="floating-cart-trigger" onclick="toggleCartDrawer(true)">
+        🛒 Cart (<span id="cartCount">0</span>)
+    </div>
+
+    <!-- CART SIDE DRAWER CONTAINER -->
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Cart Items</h3>
+            <span style="font-size: 28px; cursor: pointer; color:#999;" onclick="toggleCartDrawer(false)">&times;</span>
+        </div>
+        <div class="cart-items-list" id="cartItemsContainer">
+            <p style="color: #999; text-align: center; margin-top: 40px;">Your cart is currently empty.</p>
+        </div>
+        <div class="cart-total-footer">
+            <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px;">
+                <span>Subtotal:</span>
+                <span>₹<span id="cartTotal">0</span></span>
+            </div>
+            <!-- DELAYED WARNING AT FINAL PAYMENT STEP CLICK -->
+            <button class="btn btn-primary" style="width:100%;" onclick="triggerCheckoutWarning()">Proceed to Payment</button>
+        </div>
+    </div>
+
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Order Marketplace Catalog</h2>
-            <p class="section-subtitle">Fresh internal hub categories prepared securely under strict standards</p>
-            
+            <h2 class="section-title">Order Marketplace</h2>
             <div class="search-wrapper">
                 <span>🔍</span>
-                <input type="text" id="internalSearch" class="order-search-input" placeholder="Search product across all sections..." onkeyup="runGridSearch()">
+                <input type="text" id="internalSearch" class="order-search-input" placeholder="Search product items..." onkeyup="runGridSearch()">
             </div>
         </div>
 
         <div class="category-nav-wrapper">
             <div class="container">
-                <div class="category-nav" id="categoryNav">
+                <div class="category-nav">
                     <button class="category-btn active" onclick="scrollToSection('fastfood', this)">Fast Food</button>
                     <button class="category-btn" onclick="scrollToSection('fruits', this)">Fresh Fruits</button>
                     <button class="category-btn" onclick="scrollToSection('veg', this)">Vegetables</button>
@@ -94,51 +120,51 @@
             <div id="fastfood" class="category-section">
                 <h3 class="category-heading">🍿 Standardized Fast Food</h3>
                 <div class="order-grid">
-                    <div class="product-card" onclick="triggerPopup('order')" data-title="classic veg burger">
-                        <img src="burger.png" alt="Veg Burger" class="product-img">
+                    <div class="product-card" data-title="classic veg burger">
+                        <img src="burger.png" alt="Burger" class="product-img">
                         <div class="product-info">
                             <h4>Classic Veg Burger</h4>
-                            <p>Toasted whole wheat bun featuring crisp local potato patty and mint-yogurt spreads.</p>
-                            <div class="product-meta"><span class="product-price">₹40</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                            <p>Toasted bun loaded with vegetable patties and mint leaf spread layers.</p>
+                            <div class="product-meta"><span class="product-price">₹40</span><button class="btn btn-accent" style="padding:6px 14px; font-size:13px;" onclick="addToCart('Classic Veg Burger', 40)">Add To Cart</button></div>
                         </div>
                     </div>
-                    <div class="product-card" onclick="triggerPopup('order')" data-title="steamed vegetable momos">
-                        <img src="momos.png" alt="Steamed Momos" class="product-img">
+                    <div class="product-card" data-title="steamed vegetable momos">
+                        <img src="momos.png" alt="Momos" class="product-img">
                         <div class="product-info">
                             <h4>Steamed Momos</h4>
-                            <p>Healthy wheat casings filled with steamed organic garden vegetables, served with house red dip.</p>
-                            <div class="product-meta"><span class="product-price">₹30</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                            <p>Healthy whole wheat steamed cases with uniform garden veggie mix fillings.</p>
+                            <div class="product-meta"><span class="product-price">₹30</span><button class="btn btn-accent" style="padding:6px 14px; font-size:13px;" onclick="addToCart('Steamed Momos', 30)">Add To Cart</button></div>
                         </div>
                     </div>
-                    <div class="product-card" onclick="triggerPopup('order')" data-title="savory uttapam mix pancake">
-                        <img src="uttapam.png" alt="Uttapam Mix" class="product-img">
+                    <div class="product-card" data-title="savory uttapam mix pancake">
+                        <img src="uttapam.png" alt="Uttapam" class="product-img">
                         <div class="product-info">
                             <h4>Uttapam Mix</h4>
-                            <p>Lightly griddled savory rice flour base topped with diced green chilies and onions.</p>
-                            <div class="product-meta"><span class="product-price">₹25</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                            <p>Rice flour pancake base with precise onion configurations.</p>
+                            <div class="product-meta"><span class="product-price">₹25</span><button class="btn btn-accent" style="padding:6px 14px; font-size:13px;" onclick="addToCart('Uttapam Mix', 25)">Add To Cart</button></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- FRUITS -->
+            <!-- FRESH FRUITS -->
             <div id="fruits" class="category-section">
-                <h3 class="category-heading">🍎 Fresh Organic Fruits</h3>
+                <h3 class="category-heading">🍎 Fresh Fruits</h3>
                 <div class="order-grid">
-                    <div class="product-card" onclick="triggerPopup('order')" data-title="premium crisp red apples">
+                    <div class="product-card" data-title="premium crisp red apples">
                         <img src="apples.png" alt="Apples" class="product-img">
                         <div class="product-info">
                             <h4>Premium Red Apples</h4>
-                            <p>Crisp, orchard-fresh picked Kashmiri apples sourced directly through hub farmers. (Per kg)</p>
-                            <div class="product-meta"><span class="product-price">₹140</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                            <p>Freshly picked Kashmiri red apples sourced cleanly via cluster farmers. (Per kg)</p>
+                            <div class="product-meta"><span class="product-price">₹140</span><button class="btn btn-accent" style="padding:6px 14px; font-size:13px;" onclick="addToCart('Premium Red Apples', 140)">Add To Cart</button></div>
                         </div>
                     </div>
-                    <div class="product-card" onclick="triggerPopup('order')" data-title="sweet organic ripe bananas">
+                    <div class="product-card" data-title="sweet organic ripe bananas">
                         <img src="bananas.png" alt="Bananas" class="product-img">
                         <div class="product-info">
                             <h4>Organic Bananas</h4>
-                            <p>Naturally ripened sweet uniform cluster bananas packed cleanly. (Per Dozen)</p>
-                            <div class="product-meta"><span class="product-price">₹60</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                            <p>Naturally grown clean uniform sweet bananas. (Per Dozen)</p>
+                            <div class="product-meta"><span class="product-price">₹60</span><button class="btn btn-accent" style="padding:6px 14px; font-size:13px;" onclick="addToCart('Organic Bananas', 60)">Add To Cart</button></div>
                         </div>
                     </div>
                 </div>
@@ -146,22 +172,14 @@
 
             <!-- VEGETABLES -->
             <div id="veg" class="category-section">
-                <h3 class="category-heading">🥦 Fresh Local Vegetables</h3>
+                <h3 class="category-heading">🥦 Vegetables</h3>
                 <div class="order-grid">
-                    <div class="product-card" onclick="triggerPopup('order')" data-title="farm fresh cluster potatoes aloo">
+                    <div class="product-card" data-title="farm fresh cluster potatoes aloo">
                         <img src="potatoes.png" alt="Potatoes" class="product-img">
                         <div class="product-info">
                             <h4>Farm Potatoes</h4>
-                            <p>Triple washed local crop potatoes, selected matching uniform sizing metrics. (Per kg)</p>
-                            <div class="product-meta"><span class="product-price">₹30</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
-                        </div>
-                    </div>
-                    <div class="product-card" onclick="triggerPopup('order')" data-title="organic ripe red tomatoes tamatar">
-                        <img src="tomatoes.png" alt="Tomatoes" class="product-img">
-                        <div class="product-info">
-                            <h4>Organic Tomatoes</h4>
-                            <p>Vibrant juicy red tomatoes picked straight from surrounding field setups. (Per kg)</p>
-                            <div class="product-meta"><span class="product-price">₹45</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                            <p>Cleaned high quality local field harvest potatoes. (Per kg)</p>
+                            <div class="product-meta"><span class="product-price">₹30</span><button class="btn btn-accent" style="padding:6px 14px; font-size:13px;" onclick="addToCart('Farm Potatoes', 30)">Add To Cart</button></div>
                         </div>
                     </div>
                 </div>
@@ -169,22 +187,14 @@
 
             <!-- BEVERAGES -->
             <div id="beverages" class="category-section">
-                <h3 class="category-heading">🥤 House Crafted Beverages</h3>
+                <h3 class="category-heading">🥤 Beverages</h3>
                 <div class="order-grid">
-                    <div class="product-card" onclick="triggerPopup('order')" data-title="signature refreshing mint lemonade nimbu pani">
-                        <img src="lemonade.png" alt="Mint Lemonade" class="product-img">
+                    <div class="product-card" data-title="signature refreshing mint lemonade nimbu pani">
+                        <img src="lemonade.png" alt="Lemonade" class="product-img">
                         <div class="product-info">
                             <h4>Signature Mint Lemonade</h4>
-                            <p>Ice-cold hydration mixed with fresh lemon extractions, trace black salts, and farm mint leaf juice.</p>
-                            <div class="product-meta"><span class="product-price">₹20</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
-                        </div>
-                    </div>
-                    <div class="product-card" onclick="triggerPopup('order')" data-title="sweet churned yogurt cooling lassi">
-                        <img src="lassi.png" alt="Sweet Lassi" class="product-img">
-                        <div class="product-info">
-                            <h4>Sweet Churned Lassi</h4>
-                            <p>Creamy traditional dahi lassi, churned up inside hygienic stainless steel containers.</p>
-                            <div class="product-meta"><span class="product-price">₹30</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                            <p>Ice-cold refreshment made with freshly crushed organic mint extractions.</p>
+                            <div class="product-meta"><span class="product-price">₹20</span><button class="btn btn-accent" style="padding:6px 14px; font-size:13px;" onclick="addToCart('Mint Lemonade', 20)">Add To Cart</button></div>
                         </div>
                     </div>
                 </div>
@@ -194,60 +204,66 @@
             <div id="partners" class="partner-title-box category-section">
                 <h3 class="category-heading" style="color: #d35400;">🤝 Verified Partner Kitchens</h3>
                 <div class="partner-grid">
-                    <div class="partner-card" onclick="triggerPopup('partner')">
+                    <div class="partner-card" onclick="triggerCheckoutWarning()">
                         <h4>Sharma Sweets & Cafe</h4>
-                        <p>Famous for fresh regional North Indian meals and traditional dairy delicacies.</p>
+                        <p>Famous for fresh regional North Indian meals and sweet snacks.</p>
                     </div>
-                    <div class="partner-card" onclick="triggerPopup('partner')">
+                    <div class="partner-card" onclick="triggerCheckoutWarning()">
                         <h4>Royal Bakers</h4>
-                        <p>Providing custom celebration confectionery, multi-grain sandwich breads, and baked rolls.</p>
-                    </div>
-                    <div class="partner-card" onclick="triggerPopup('partner')">
-                        <h4>Krishna Dosa Point</h4>
-                        <p>High-turnover South Indian kitchen serving verified clean idlis, dosas, and sambhar variants.</p>
+                        <p>Providing custom celebration confectionery and multi-grain breads.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div id="popupBox" class="modal-overlay">
+    <!-- FINAL PAYMENT STEP DIALOG MODULE -->
+    <div id="checkoutModal" class="modal-overlay">
         <div class="modal-box">
-            <span class="close-icon" onclick="dismissPopup()">&times;</span>
-            <div id="modalContentOrder">
-                <h2 style="color: #d35400;">🚀 Launching Shortly</h2>
-                <p style="margin-top:20px; font-size:18px;">Our completely direct internal shipping checkout channels are being validated right now. Checkout clears natively here soon!</p>
-            </div>
-            <div id="modalContentLogin" style="display:none;">
-                <h2 style="color: var(--primary);">👤 Member Access</h2>
-                <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login will activate during the official Cloud Kitchen rollout.</p>
-            </div>
-            <div id="modalContentPartner" style="display:none;">
-                <h2 style="color: #d35400;">🏢 Unified Logistics Processing</h2>
-                <p style="margin-top:20px; font-size:18px;">Partner kitchen items are currently being mapped directly into the internal Masala Mint fleet network. Natively routed deliveries will bypass third-party platforms soon.</p>
-            </div>
-            <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissPopup()">Got it</button>
+            <span class="close-icon" onclick="dismissCheckoutWarning()">&times;</span>
+            <h2 style="color: #d35400;">🚧 Pipeline Under Development</h2>
+            <p style="margin-top:20px; font-size:18px;">The native order checkout terminal framework is undergoing optimization protocols. Online card and payment options will launch globally inside the next version sprint!</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissCheckoutWarning()">Understood</button>
         </div>
     </div>
 
-    <footer>
-        <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
-    </footer>
-
     <script>
-        var popup = document.getElementById("popupBox");
-        var contentOrder = document.getElementById("modalContentOrder");
-        var contentLogin = document.getElementById("modalContentLogin");
-        var contentPartner = document.getElementById("modalContentPartner");
+        var cart = [];
+        var modal = document.getElementById("checkoutModal");
 
-        function triggerPopup(type) {
-            contentOrder.style.display = "none"; contentLogin.style.display = "none"; contentPartner.style.display = "none";
-            if (type === 'login') contentLogin.style.display = "block";
-            else if (type === 'partner') contentPartner.style.display = "block";
-            else contentOrder.style.display = "block";
-            popup.style.display = "flex";
+        function toggleCartDrawer(open) {
+            document.getElementById("cartDrawer").classList.toggle("open", open);
         }
-        function dismissPopup() { popup.style.display = "none"; }
+
+        function addToCart(name, price) {
+            cart.push({name: name, price: price});
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            document.getElementById("cartCount").innerText = cart.length;
+            var container = document.getElementById("cartItemsContainer");
+            var totalCount = 0;
+            
+            if(cart.length === 0) {
+                container.innerHTML = '<p style="color:#999; text-align:center; margin-top:40px;">Your cart is currently empty.</p>';
+                document.getElementById("cartTotal").innerText = 0;
+                return;
+            }
+
+            container.innerHTML = "";
+            cart.forEach(function(item) {
+                totalCount += item.price;
+                var row = document.createElement("div");
+                row.className = "cart-item-row";
+                row.innerHTML = '<span>' + item.name + '</span><span>₹' + item.price + '</span>';
+                container.appendChild(row);
+            });
+            document.getElementById("cartTotal").innerText = totalCount;
+        }
+
+        function triggerCheckoutWarning() { modal.style.display = "flex"; }
+        function dismissCheckoutWarning() { modal.style.display = "none"; }
         function runGridSearch() {
             var searchTxt = document.getElementById("internalSearch").value.toLowerCase();
             var items = document.getElementsByClassName("product-card");
@@ -256,8 +272,8 @@
                 items[i].style.display = nameAttr.includes(searchTxt) ? "flex" : "none";
             }
         }
-        function scrollToSection(sectionId, btn) {
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        function scrollToSection(id, btn) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
             var buttons = document.getElementsByClassName("category-btn");
             for (var i = 0; i < buttons.length; i++) buttons[i].classList.remove("active");
             btn.classList.add("active");
