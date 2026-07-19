@@ -3,21 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How It Works | Masala Mint Operational System</title>
+    <title>How It Works | Masala Mint</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .flow-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px;}
         .flow-step { background: var(--light); padding: 25px; border-radius: 8px; border-left: 5px solid var(--primary); font-weight: 600;}
-        .modal-overlay {
-            display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
-        }
-        .modal-box {
-            background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%;
-            text-align: center; position: relative; border-top: 8px solid var(--accent);
-        }
-        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
-        @media (max-width: 768px) { .flow-list { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -33,53 +23,26 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html">Join Us</a>
-                <button class="btn btn-login" onclick="triggerLoginPopup()">Login</button>
+                <a href="login.html" class="btn-login">Login</a>
             </nav>
         </div>
     </header>
 
     <section class="section">
         <div class="container">
-            <h2 class="section-title">The Scalable Franchise Blueprint</h2>
-            <p class="section-subtitle">Methodical structural integration step-by-step</p>
-            
-            <div class="split-section">
-                <div>
-                    <h3>Engineered Operational Security</h3>
-                    <p>From centralized bulk component tracking to direct physical deployment, we remove guesswork from operations management entirely.</p>
-                </div>
-                <img src="process-flow.jpg" alt="Expansion mapping system visualization graph" class="feat-image">
-            </div>
-
+            <h2 class="section-title">The Operational Blueprint</h2>
             <div class="flow-list">
-                <div class="flow-step">1. Strategic Hub Mapping & Demographics Selection</div>
-                <div class="flow-step">2. Micro-Entrepreneur Sourcing & Onboarding</div>
-                <div class="flow-step">3. Rigorous SOP Culinary Preparation Training</div>
-                <div class="flow-step">4. Modern Branded Infrastructure Deployment</div>
-                <div class="flow-step">5. Central Raw Ingredient Quality Supply Chain Linkage</div>
-                <div class="flow-step">6. Real-time Remote Safety Audits & CCTV Oversight</div>
+                <div class="flow-step">1. Strategic Hub Mapping Selection</div>
+                <div class="flow-step">2. Local Vendor Sourcing & Validation</div>
+                <div class="flow-step">3. Culinary Training SOP Execution</div>
+                <div class="flow-step">4. Branded Clean Mobile Infrastructure Setup</div>
             </div>
         </div>
     </section>
-
-    <div id="popupBox" class="modal-overlay">
-        <div class="modal-box">
-            <span class="close-icon" onclick="dismissLoginPopup()">&times;</span>
-            <h2 style="color: var(--primary);">👤 Member Access</h2>
-            <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
-            <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissLoginPopup()">Got it</button>
-        </div>
-    </div>
 
     <footer>
         <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
     </footer>
 
-    <script>
-        var popup = document.getElementById("popupBox");
-        function triggerLoginPopup() { popup.style.display = "flex"; }
-        function dismissLoginPopup() { popup.style.display = "none"; }
-        window.onclick = function(event) { if (event.target == popup) { popup.style.display = "none"; } }
-    </script>
 </body>
 </html>
