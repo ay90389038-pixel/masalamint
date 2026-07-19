@@ -1,3 +1,4 @@
+<!-- reviews.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +7,42 @@
     <title>Customer Testimonials | Masala Mint</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .feedback-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
-        .feedback-card { background: var(--light); padding: 30px; border-radius: 12px; box-shadow: var(--shadow); }
-        .stars { color: #ffbc42; margin-bottom: 15px;}
-        .author-tag { margin-top: 20px; font-weight: bold; color: var(--primary); }
+        .feedback-container { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            margin-top: 40px; 
+        }
+        .feedback-card { 
+            background: var(--light); 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: var(--shadow); 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .stars { 
+            color: #ffbc42; 
+            margin-bottom: 15px; 
+            font-size: 20px;
+        }
+        .feedback-text {
+            font-size: 18px;
+            color: #444;
+            font-style: italic;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        .author-tag { 
+            margin-top: 20px; 
+            font-weight: bold; 
+            font-size: 16px; 
+            color: var(--primary); 
+        }
+        @media (max-width: 992px) { 
+            .feedback-container { grid-template-columns: 1fr; } 
+        }
     </style>
 </head>
 <body>
@@ -33,11 +66,34 @@
     <section class="section">
         <div class="container">
             <h2 class="section-title">Regional Community Feedback</h2>
+            <p class="section-subtitle">Read what users think about our cluster units</p>
+            
             <div class="feedback-container">
+                <!-- REVIEW 1 -->
                 <div class="feedback-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"The items match city standards perfectly. Complete culinary hygiene consistency."</p>
+                    <div>
+                        <div class="stars">★★★★★</div>
+                        <p class="feedback-text">"The momos taste perfectly uniform every single week. Excellent change of standard compared to local unbranded options."</p>
+                    </div>
                     <div class="author-tag">— Rahul Singh, Cluster Dulehra</div>
+                </div>
+                
+                <!-- REVIEW 2 -->
+                <div class="feedback-card" style="border-top: 5px solid var(--accent);">
+                    <div>
+                        <div class="stars">★★★★★</div>
+                        <p class="feedback-text">"Total sanitation clarity. Watching vendors operate inside clean environments wearing gloves gives complete reassurance."</p>
+                    </div>
+                    <div class="author-tag">— Sunita Sharma, Bulandshahr</div>
+                </div>
+                
+                <!-- REVIEW 3 -->
+                <div class="feedback-card">
+                    <div>
+                        <div class="stars">★★★★★</div>
+                        <p class="feedback-text">"The signature mint lemonade mix is unmatched. Clean, cold, incredibly professional presentation value."</p>
+                    </div>
+                    <div class="author-tag">— Amit Gupta, Village Hub Farmer</div>
                 </div>
             </div>
         </div>
