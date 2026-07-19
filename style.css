@@ -1,0 +1,180 @@
+/* =========================================
+   MASALA MINT MASTER STYLESHEET (style.css)
+   ========================================= */
+
+:root {
+    --primary: #2d6a4f;      /* Forest Green */
+    --primary-light: #52b788;
+    --accent: #ff9f1c;       /* Safety Orange */
+    --dark: #1b4332;         /* Deep Green */
+    --light: #f8f9fa;        /* Clean White */
+    --text: #2b2d42;         /* Dark Gray */
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    /* Font sizes */
+    --font-h1: 64px;       
+    --font-h2: 48px;       
+    --font-h3: 32px;       
+    --font-p: 22px;        
+    --font-nav: 18px;      
+    --font-subtitle: 24px; 
+    --font-small: 16px;    
+}
+
+/* RESET & BASE */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    background-color: #fff;
+    line-height: 1.6;
+    font-size: var(--font-p);
+    padding-top: 100px; /* Space for fixed header */
+}
+h1, h2, h3 { color: var(--dark); margin-bottom: 1.25rem; }
+h1 { font-size: var(--font-h1); }
+h2 { font-size: var(--font-h2); }
+h3 { font-size: var(--font-h3); }
+p { margin-bottom: 2rem; color: #555; font-size: var(--font-p); }
+ul { list-style: none; }
+a { text-decoration: none; color: inherit; }
+
+/* REUSABLE COMPONENTS */
+.container {
+    width: 90%;
+    max-width: 1300px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section { padding: 100px 0; } 
+.section-title { text-align: center; text-transform: uppercase; letter-spacing: 3px; font-size: var(--font-h2); margin-bottom: 15px;}
+.section-subtitle { text-align: center; color: var(--primary); font-style: italic; margin-top: -15px; margin-bottom: 60px; font-size: var(--font-subtitle); font-weight: normal;}
+
+.btn {
+    display: inline-block;
+    padding: 16px 40px; 
+    border-radius: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 16px; 
+}
+.btn-primary { background-color: var(--primary); color: white; box-shadow: 0 6px 18px rgba(45, 106, 79, 0.4); }
+.btn-primary:hover { background-color: var(--dark); transform: translateY(-3px); }
+.btn-accent { background-color: var(--accent); color: var(--dark); }
+.btn-accent:hover { background-color: #e68a00; transform: translateY(-3px); }
+
+.split-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+.feat-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    object-fit: cover;
+}
+
+/* =========================================
+   HEADER & NAVIGATION (Consistent across all pages)
+   ========================================= */
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+}
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo h1 { font-size: 36px; margin: 0; color: var(--primary); }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 25px; font-weight: 500; font-size: var(--font-nav); align-items: center;}
+.nav-links a:hover { color: var(--primary); }
+/* Highlight current page */
+.nav-links a.active { color: var(--accent); font-weight: bold; }
+
+/* HEADER INTEGRATED SEARCH BAR */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.search-bar {
+    padding: 10px 15px 10px 35px;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    width: 220px;
+    transition: all 0.3s ease;
+}
+.search-bar:focus { outline: none; border-color: var(--primary); width: 280px; }
+.search-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 16px;
+    color: #888;
+    pointer-events: none;
+}
+.cart-bubble {
+    background-color: var(--accent);
+    color: var(--dark);
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 4px 10px;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+/* =========================================
+   FOOTER (Consistent across all pages)
+   ========================================= */
+footer {
+    background-color: #111;
+    color: rgba(255,255,255,0.7);
+    padding: 80px 0 40px 0;
+    font-size: var(--font-p);
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 50px;
+}
+.footer-logo h2 { color: var(--primary-light); margin-bottom: 15px; font-size: 32px; }
+.footer-title { color: white; font-weight: bold; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px;}
+.footer-links li { margin-bottom: 12px; }
+.footer-links a:hover { color: #fff; }
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 40px;
+    font-size: var(--font-small);
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 992px) {
+    :root {
+        --font-h1: 52px;
+        --font-h2: 40px;
+        --font-p: 20px;
+        --font-subtitle: 20px;
+    }
+    .hero-content h1 { font-size: 60px; }
+    .split-section { grid-template-columns: 1fr; text-align: center; gap: 40px;}
+    .section-title, .process h2, .why h2 { text-align: center !important; font-size: var(--font-h2) !important;}
+    .feat-image { max-width: 600px; margin: 0 auto; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center;}
+}
