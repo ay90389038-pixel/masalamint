@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hygiene & Safety | Masala Mint</title>
+    <title>Masala Mint | Taste the Magic | Standardizing Rural Street Food</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('hero_magic.jpg') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: -100px;
+        }
+        .hero-content h1 { color: white; font-size: 80px; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 3px;}
+        .hero-content p { color: rgba(255,255,255,0.95); font-size: 28px; max-width: 850px; margin: 0 auto 50px auto; font-style: normal; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px;}
+        
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 40px; }
+            .hero-content p { font-size: 22px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -14,36 +32,57 @@
                 <a href="index.html"><h1>Masala <span>Mint</span></h1></a>
             </div>
             <nav class="nav-links">
-                <a href="index.html">Home</a>
+                <a href="index.html" class="active">Home</a>
                 <a href="story.html">Story</a>
                 <a href="how-it-works.html">How it Works</a>
                 <a href="order.html">Order</a>
-                <a href="safety.html" class="active">Safety First</a>
+                <a href="safety.html">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html">Join Us</a>
             </nav>
         </div>
     </header>
 
-    <section class="section safety-page">
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>MASALA MINT</h1>
+            <p>TASTE THE MAGIC OF MASALA MINT!</p>
+            <a href="order.html" class="btn btn-primary">Order Now</a>
+            <a href="story.html" class="btn btn-accent">Our Story</a>
+        </div>
+    </section>
+
+    <section class="section about">
         <div class="container split-section">
             <div>
-                <h2>Hygiene First</h2>
-                <p>We build trust through visibility. We operate under strict Standard Operating Procedures (SOPs) developed to provide complete peace of mind to our customers.</p>
-                <ul class="icon-list" style="margin-top: 20px; font-size: 22px; line-height: 2;">
-                    <li>✦ Mandatory Hair Caps & Uniform Aprons</li>
-                    <li>✦ Daily Certified Food-Grade Gloves</li>
-                    <li>✦ Purified Drinking Water Filtration</li>
-                    <li>✦ Covered Food Storage Units</li>
-                    <li>✦ Deep Vending Unit Sanitization Daily</li>
-                    <li>✦ Continuous Quality Auditing</li>
-                </ul>
+                <h2>Welcome to Masala Mint</h2>
+                <p>We are dedicated to standardizing rural street food by combining consistent recipes with certified hygiene protocols.</p>
+                <p>Taste the magic across our authorized micro-franchises. Every meal supports reliable rural livelihoods.</p>
+                <a href="order.html" class="btn btn-accent">View Our Products</a>
             </div>
-            <img src="hygiene-standards.png" alt="Masala Mint hygiene safety protocols close-up" class="feat-image">
+            <img src="quality-control.jpg" alt="Masala Mint fresh ingredients" class="feat-image">
         </div>
     </section>
 
     <footer>
+        <div class="container footer-grid">
+            <div class="footer-logo">
+                <h2>Masala Mint</h2>
+                <p>A social entrepreneurship project standardizing rural food.</p>
+            </div>
+            <div>
+                <p class="footer-title">Explore</p>
+                <ul class="footer-links">
+                    <li><a href="story.html">Our Story</a></li>
+                    <li><a href="how-it-works.html">How it Works</a></li>
+                    <li><a href="order.html">Order</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="footer-title">Contact</p>
+                <p>hello@masalamint.in</p>
+            </div>
+        </div>
         <div class="container footer-bottom">
             <p>&copy; 2026 Masala Mint. All Rights Reserved.</p>
         </div>
