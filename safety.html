@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hygiene & Safety | Masala Mint</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .modal-overlay {
+            display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
+        }
+        .modal-box {
+            background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%;
+            text-align: center; position: relative; border-top: 8px solid var(--accent);
+        }
+        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
+    </style>
 </head>
 <body>
 
     <header>
         <div class="container">
-            <div class="logo">
-                <a href="index.html"><h1>Masala <span>Mint</span></h1></a>
-            </div>
+            <div class="logo"><a href="index.html"><h1>Masala <span>Mint</span></h1></a></div>
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="story.html">Story</a>
@@ -21,33 +30,46 @@
                 <a href="safety.html" class="active">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html">Join Us</a>
+                <button class="btn btn-login" onclick="triggerLoginPopup()">Login</button>
             </nav>
         </div>
     </header>
 
-    <section class="section safety-page">
+    <section class="section">
         <div class="container split-section">
             <div>
-                <h2>Hygiene First</h2>
-                <p>We build trust through visibility. We operate under strict Standard Operating Procedures (SOPs) developed to provide complete peace of mind to our customers.</p>
-                <ul class="icon-list" style="margin-top: 20px; font-size: 22px; line-height: 2;">
-                    <li>✦ Mandatory Hair Caps & Uniform Aprons</li>
-                    <li>✦ Daily Certified Food-Grade Gloves</li>
-                    <li>✦ Purified Drinking Water Filtration</li>
-                    <li>✦ Covered Food Storage Units</li>
-                    <li>✦ Deep Vending Unit Sanitization Daily</li>
-                    <li>✦ Continuous Quality Auditing</li>
+                <h2>Strict SOP Management Fields</h2>
+                <p>We believe absolute transparency builds user confidence. Our carts function under standard parameters engineered for food security:</p>
+                <ul style="font-size: 20px; line-height: 2.2; color: #555;">
+                    <li>✔️ Compulsory Sanitary Hair Net Enclosures</li>
+                    <li>✔️ Standard Ironed Canvas Branded Aprons</li>
+                    <li>✔️ Single-use Food Grade Nitrile Gloves daily</li>
+                    <li>✔️ Multi-stage RO Water System Implementation</li>
+                    <li>✔️ Sealed Dust and Insect Proof Raw Trays</li>
                 </ul>
             </div>
-            <img src="hygiene-standards.png" alt="Masala Mint hygiene safety protocols close-up" class="feat-image">
+            <img src="hygiene-standards.png" alt="Safety tools close up gloved hands kitchen execution" class="feat-image">
         </div>
     </section>
 
-    <footer>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Masala Mint. All Rights Reserved.</p>
+    <div id="popupBox" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-icon" onclick="dismissLoginPopup()">&times;</span>
+            <h2 style="color: var(--primary);">👤 Member Access</h2>
+            <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissLoginPopup()">Got it</button>
         </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
     </footer>
 
+    <script>
+        var popup = document.getElementById("popupBox");
+        function triggerLoginPopup() { popup.style.display = "flex"; }
+        function dismissLoginPopup() { popup.style.display = "none"; }
+        window.onclick = function(event) { if (event.target == popup) { popup.style.display = "none"; } }
+    </script>
 </body>
 </html>
