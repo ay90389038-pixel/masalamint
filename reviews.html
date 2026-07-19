@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Reviews | Masala Mint</title>
+    <title>Customer Testimonials | Masala Mint</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
+        .feedback-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+        .feedback-card { background: var(--light); padding: 30px; border-radius: 12px; box-shadow: var(--shadow); }
+        .stars { color: #ffbc42; margin-bottom: 15px; font-size: 20px;}
+        .author-tag { margin-top: 20px; font-weight: bold; font-size: 16px; color: var(--primary); }
+        .modal-overlay {
+            display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
         }
-        .review-card {
-            background-color: var(--light);
-            text-align: left;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: var(--shadow);
+        .modal-box {
+            background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%;
+            text-align: center; position: relative; border-top: 8px solid var(--accent);
         }
-        .review-stars { color: #f9c74f; font-size: 1.4em; margin-bottom: 10px;}
-        .review-author { font-size: 16px; font-weight: bold; color: var(--dark); margin-top: 15px;}
-        @media (max-width: 992px) { .reviews-grid { grid-template-columns: 1fr; } }
+        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
+        @media (max-width: 992px) { .feedback-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <header>
         <div class="container">
-            <div class="logo">
-                <a href="index.html"><h1>Masala <span>Mint</span></h1></a>
-            </div>
+            <div class="logo"><a href="index.html"><h1>Masala <span>Mint</span></h1></a></div>
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="story.html">Story</a>
@@ -39,40 +35,54 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html" class="active">Reviews</a>
                 <a href="join-us.html">Join Us</a>
+                <button class="btn btn-login" onclick="triggerLoginPopup()">Login</button>
             </nav>
         </div>
     </header>
 
-    <section class="section reviews-page">
+    <section class="section">
         <div class="container">
-            <h2 class="section-title">Community Feedback</h2>
-            <p class="section-subtitle">What our early cluster locations are saying</p>
+            <h2 class="section-title">Verified Regional Testimonials</h2>
+            <p class="section-subtitle">Read what users think about our cluster units</p>
             
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
-                    <p>"Best Momos in the area! The taste is so consistent, just like what we get in the city."</p>
-                    <p class="review-author">— Rahul Singh, Student (Dulehra)</p>
+            <div class="feedback-container">
+                <div class="feedback-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"The momos taste perfectly uniform every single week. Excellent change of standard compared to local unbranded options."</p>
+                    <div class="author-tag">— Rahul Singh, Cluster Dulehra</div>
                 </div>
-                <div class="review-card" style="border-top: 4px solid var(--accent);">
-                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
-                    <p>"I always worry about the children eating outside, but with Masala Mint, I trust the hygiene. We love the lemonade!"</p>
-                    <p class="review-author">— Sunita Sharma, Mother (Bulandshahr)</p>
+                <div class="feedback-card" style="border-top: 5px solid var(--accent);">
+                    <div class="stars">★★★★★</div>
+                    <p>"Total sanitation clarity. Watching vendors operate inside clean environments wearing gloves gives complete reassurance."</p>
+                    <div class="author-tag">— Sunita Sharma, Bulandshahr</div>
                 </div>
-                <div class="review-card">
-                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
-                    <p>"The friendliness of the vendor and the clean cart make eating here a great experience. The Veg Burger is magic."</p>
-                    <p class="review-author">— Amit Gupta, Local Farmer</p>
+                <div class="feedback-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"The signature mint lemonade mix is unmatched. Clean, cold, incredibly professional presentation value."</p>
+                    <div class="author-tag">— Amit Gupta, Village Hub Farmer</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Masala Mint. All Rights Reserved.</p>
+    <div id="popupBox" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-icon" onclick="dismissLoginPopup()">&times;</span>
+            <h2 style="color: var(--primary);">👤 Member Access</h2>
+            <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissLoginPopup()">Got it</button>
         </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
     </footer>
 
+    <script>
+        var popup = document.getElementById("popupBox");
+        function triggerLoginPopup() { popup.style.display = "flex"; }
+        function dismissLoginPopup() { popup.style.display = "none"; }
+        window.onclick = function(event) { if (event.target == popup) { popup.style.display = "none"; } }
+    </script>
 </body>
 </html>
