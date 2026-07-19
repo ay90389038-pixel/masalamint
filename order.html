@@ -6,11 +6,16 @@
     <title>Order Online Menu Hub | Masala Mint</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* =========================================
+           ORDER PAGE SPECIFIC STYLES
+           ========================================= */
+
+        /* 1. DEDICATED SEARCH ROW */
         .search-wrapper {
             background-color: var(--light);
-            padding: 30px;
+            padding: 25px;
             border-radius: 12px;
-            margin-bottom: 5px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,6 +32,57 @@
             transition: all 0.3s;
         }
         .order-search-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 10px rgba(45,106,79,0.1); }
+
+        /* 2. HORIZONTAL SUB-CATEGORY NAVIGATION */
+        .category-nav-wrapper {
+            background-color: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 80px; /* Sticks below main header */
+            z-index: 900;
+            margin-bottom: 40px;
+        }
+        .category-nav {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto; 
+            white-space: nowrap;
+            padding-bottom: 5px; 
+        }
+        .category-nav::-webkit-scrollbar { display: none; }
+        .category-nav { -ms-overflow-style: none;  scrollbar-width: none; }
+
+        .category-btn {
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            flex-shrink: 0; 
+        }
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        /* 3. PRODUCT GRID & CARDS */
+        .category-section { scroll-margin-top: 160px; margin-bottom: 60px; }
+
+        .category-heading {
+            text-align: left;
+            color: var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: var(--font-h3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         .order-grid {
             display: grid;
@@ -52,22 +108,54 @@
         .product-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
         .product-price { font-size: 22px; font-weight: bold; color: var(--primary); }
 
+        /* NATIVE PARTNER NETWORK STYLES */
+        .partner-title-box {
+            border-top: 2px dashed #ccc;
+            padding-top: 50px;
+            margin-top: 50px;
+            scroll-margin-top: 160px;
+        }
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .partner-card {
+            background: #fff;
+            border-left: 6px solid var(--accent);
+            text-align: left;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .partner-card:hover { transform: translateY(-3px); }
+        .partner-card h4 { font-size: 24px; color: var(--dark); margin-bottom: 5px;}
+        .partner-card p { font-size: 16px; margin-bottom: 15px; }
+
+        /* 4. MODAL OVERLAY STYLES */
         .modal-overlay {
             display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
             background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
         }
         .modal-box {
-            background: #fff; padding: 45px; border-radius: 16px; max-width: 500px; width: 90%;
+            background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%;
             text-align: center; position: relative; border-top: 8px solid var(--accent);
         }
         .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
 
-        @media (max-width: 1200px) { .order-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 1200px) { 
+            .order-grid { grid-template-columns: repeat(2, 1fr); } 
+            .partner-grid { grid-template-columns: 1fr; }
+        }
         @media (max-width: 650px) { .order-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
+    <!-- Consistent Header with LOGIN Option -->
     <header>
         <div class="container">
             <div class="logo"><a href="index.html"><h1>Masala <span>Mint</span></h1></a></div>
@@ -79,6 +167,7 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html">Join Us</a>
+                <button class="btn btn-login" onclick="triggerPopup('login')">Login</button>
             </nav>
         </div>
     </header>
@@ -93,95 +182,145 @@
                 <span>🔍</span>
                 <input type="text" id="internalSearch" class="order-search-input" placeholder="Search product across all sections..." onkeyup="runGridSearch()">
             </div>
+        </div>
 
+        <!-- HORIZONTAL SUB-CATEGORY NAVIGATION (Fixed on scroll, updated to include partners) -->
+        <div class="category-nav-wrapper">
+            <div class="container">
+                <div class="category-nav" id="categoryNav">
+                    <button class="category-btn active" onclick="scrollToSection('fastfood', this)">Fast Food</button>
+                    <button class="category-btn" onclick="scrollToSection('fruits', this)">Fresh Fruits</button>
+                    <button class="category-btn" onclick="scrollToSection('veg', this)">Vegetables</button>
+                    <button class="category-btn" onclick="scrollToSection('beverages', this)">Beverages</button>
+                    <button class="category-btn" onclick="scrollToSection('partners', this)">Partner Shops</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
             <!-- SUB SECTION 1: FAST FOOD -->
-            <h3 class="category-heading">🍿 Standardized Fast Food</h3>
-            <div class="order-grid">
-                <div class="product-card" onclick="triggerPopup()" data-title="classic veg burger">
-                    <img src="burger.png" alt="Veg Burger" class="product-img">
-                    <div class="product-info">
-                        <h4>Classic Veg Burger</h4>
-                        <p>Toasted whole wheat bun featuring crisp local potato patty and mint-yogurt spreads.</p>
-                        <div class="product-meta"><span class="product-price">₹40</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+            <div id="fastfood" class="category-section">
+                <h3 class="category-heading">🍿 Standardized Fast Food</h3>
+                <div class="order-grid">
+                    <div class="product-card" onclick="triggerPopup('order')" data-title="classic veg burger">
+                        <img src="burger.png" alt="Veg Burger" class="product-img">
+                        <div class="product-info">
+                            <h4>Classic Veg Burger</h4>
+                            <p>Toasted whole wheat bun featuring crisp local potato patty and mint-yogurt spreads.</p>
+                            <div class="product-meta"><span class="product-price">₹40</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card" onclick="triggerPopup()" data-title="steamed vegetable momos">
-                    <img src="momos.png" alt="Steamed Momos" class="product-img">
-                    <div class="product-info">
-                        <h4>Steamed Momos</h4>
-                        <p>Healthy wheat casings filled with steamed organic garden vegetables, served with house red dip.</p>
-                        <div class="product-meta"><span class="product-price">₹30</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                    <div class="product-card" onclick="triggerPopup('order')" data-title="steamed vegetable momos">
+                        <img src="momos.png" alt="Steamed Momos" class="product-img">
+                        <div class="product-info">
+                            <h4>Steamed Momos</h4>
+                            <p>Healthy wheat casings filled with steamed organic garden vegetables, served with house red dip.</p>
+                            <div class="product-meta"><span class="product-price">₹30</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card" onclick="triggerPopup()" data-title="savory uttapam mix pancake">
-                    <img src="uttapam.png" alt="Uttapam Mix" class="product-img">
-                    <div class="product-info">
-                        <h4>Uttapam Mix</h4>
-                        <p>Lightly griddled savory rice flour base topped with diced green chilies and onions.</p>
-                        <div class="product-meta"><span class="product-price">₹25</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                    <div class="product-card" onclick="triggerPopup('order')" data-title="savory uttapam mix pancake">
+                        <img src="uttapam.png" alt="Uttapam Mix" class="product-img">
+                        <div class="product-info">
+                            <h4>Uttapam Mix</h4>
+                            <p>Lightly griddled savory rice flour base topped with diced green chilies and onions.</p>
+                            <div class="product-meta"><span class="product-price">₹25</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- SUB SECTION 2: FRESH FRUITS -->
-            <h3 class="category-heading">🍎 Fresh Organic Fruits</h3>
-            <div class="order-grid">
-                <div class="product-card" onclick="triggerPopup()" data-title="premium crisp red apples">
-                    <img src="apples.png" alt="Apples" class="product-img">
-                    <div class="product-info">
-                        <h4>Premium Red Apples</h4>
-                        <p>Crisp, orchard-fresh picked Kashmiri apples sourced directly through hub farmers. (Per kg)</p>
-                        <div class="product-meta"><span class="product-price">₹140</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+            <div id="fruits" class="category-section">
+                <h3 class="category-heading">🍎 Fresh Organic Fruits</h3>
+                <div class="order-grid">
+                    <div class="product-card" onclick="triggerPopup('order')" data-title="premium crisp red apples">
+                        <img src="apples.png" alt="Apples" class="product-img">
+                        <div class="product-info">
+                            <h4>Premium Red Apples</h4>
+                            <p>Crisp, orchard-fresh picked Kashmiri apples sourced directly through hub farmers. (Per kg)</p>
+                            <div class="product-meta"><span class="product-price">₹140</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card" onclick="triggerPopup()" data-title="sweet organic ripe bananas">
-                    <img src="bananas.png" alt="Bananas" class="product-img">
-                    <div class="product-info">
-                        <h4>Organic Bananas</h4>
-                        <p>Naturally ripened sweet uniform cluster bananas packed cleanly. (Per Dozen)</p>
-                        <div class="product-meta"><span class="product-price">₹60</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                    <div class="product-card" onclick="triggerPopup('order')" data-title="sweet organic ripe bananas">
+                        <img src="bananas.png" alt="Bananas" class="product-img">
+                        <div class="product-info">
+                            <h4>Organic Bananas</h4>
+                            <p>Naturally ripened sweet uniform cluster bananas packed cleanly. (Per Dozen)</p>
+                            <div class="product-meta"><span class="product-price">₹60</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- SUB SECTION 3: VEGETABLES -->
-            <h3 class="category-heading">🥦 Fresh Local Vegetables</h3>
-            <div class="order-grid">
-                <div class="product-card" onclick="triggerPopup()" data-title="farm fresh cluster potatoes aloo">
-                    <img src="potatoes.png" alt="Potatoes" class="product-img">
-                    <div class="product-info">
-                        <h4>Farm Potatoes</h4>
-                        <p>Triple washed local crop potatoes, selected matching uniform sizing metrics. (Per kg)</p>
-                        <div class="product-meta"><span class="product-price">₹30</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+            <div id="veg" class="category-section">
+                <h3 class="category-heading">🥦 Fresh Local Vegetables</h3>
+                <div class="order-grid">
+                    <div class="product-card" onclick="triggerPopup('order')" data-title="farm fresh cluster potatoes aloo">
+                        <img src="potatoes.png" alt="Potatoes" class="product-img">
+                        <div class="product-info">
+                            <h4>Farm Potatoes</h4>
+                            <p>Triple washed local crop potatoes, selected matching uniform sizing metrics. (Per kg)</p>
+                            <div class="product-meta"><span class="product-price">₹30</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card" onclick="triggerPopup()" data-title="organic ripe red tomatoes tamatar">
-                    <img src="tomatoes.png" alt="Tomatoes" class="product-img">
-                    <div class="product-info">
-                        <h4>Organic Tomatoes</h4>
-                        <p>Vibrant juicy red tomatoes picked straight from surrounding field setups. (Per kg)</p>
-                        <div class="product-meta"><span class="product-price">₹45</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                    <div class="product-card" onclick="triggerPopup('order')" data-title="organic ripe red tomatoes tamatar">
+                        <img src="tomatoes.png" alt="Tomatoes" class="product-img">
+                        <div class="product-info">
+                            <h4>Organic Tomatoes</h4>
+                            <p>Vibrant juicy red tomatoes picked straight from surrounding field setups. (Per kg)</p>
+                            <div class="product-meta"><span class="product-price">₹45</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- SUB SECTION 4: BEVERAGES -->
-            <h3 class="category-heading">🥤 House Crafted Beverages</h3>
-            <div class="order-grid">
-                <div class="product-card" onclick="triggerPopup()" data-title="signature refreshing mint lemonade nimbu pani">
-                    <img src="lemonade.png" alt="Mint Lemonade" class="product-img">
-                    <div class="product-info">
-                        <h4>Signature Mint Lemonade</h4>
-                        <p>Ice-cold hydration mixed with fresh lemon extractions, trace black salts, and farm mint leaf juice.</p>
-                        <div class="product-meta"><span class="product-price">₹20</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+            <div id="beverages" class="category-section">
+                <h3 class="category-heading">🥤 House Crafted Beverages</h3>
+                <div class="order-grid">
+                    <div class="product-card" onclick="triggerPopup('order')" data-title="signature refreshing mint lemonade nimbu pani">
+                        <img src="lemonade.png" alt="Mint Lemonade" class="product-img">
+                        <div class="product-info">
+                            <h4>Signature Mint Lemonade</h4>
+                            <p>Ice-cold hydration mixed with fresh lemon extractions, trace black salts, and farm mint leaf juice.</p>
+                            <div class="product-meta"><span class="product-price">₹20</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                        </div>
+                    </div>
+                    <div class="product-card" onclick="triggerPopup('order')" data-title="sweet churned yogurt cooling lassi">
+                        <img src="lassi.png" alt="Sweet Lassi" class="product-img">
+                        <div class="product-info">
+                            <h4>Sweet Churned Lassi</h4>
+                            <p>Creamy traditional dahi lassi, churned up inside hygienic stainless steel containers.</p>
+                            <div class="product-meta"><span class="product-price">₹30</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+                        </div>
                     </div>
                 </div>
-                <div class="product-card" onclick="triggerPopup()" data-title="sweet churned yogurt cooling lassi">
-                    <img src="lassi.png" alt="Sweet Lassi" class="product-img">
-                    <div class="product-info">
-                        <h4>Sweet Churned Lassi</h4>
-                        <p>Creamy traditional dahi lassi, churned up inside hygienic stainless steel containers.</p>
-                        <div class="product-meta"><span class="product-price">₹30</span><span style="color:var(--primary); font-weight:bold;">Order Now</span></div>
+            </div>
+
+            <!-- NATIVE MID-LEVEL SHOP HUB -->
+            <div id="partners" class="partner-title-box category-section">
+                <h3 class="category-heading" style="color: #d35400;">🤝 Verified Partner Kitchens</h3>
+                <p style="margin-bottom: 20px;">Order natively from our audited regional mid-level partner shops active within the system ecosystem:</p>
+                
+                <div class="partner-grid">
+                    <div class="partner-card" onclick="triggerPopup('partner')">
+                        <h4>Sharma Sweets & Cafe</h4>
+                        <p style="color:#777; font-size:15px; margin-bottom: 5px;">Dulehra Market Cluster</p>
+                        <p>Famous for fresh regional North Indian meals and traditional dairy delicacies.</p>
+                        <span style="color:var(--primary); font-weight:bold; font-size:15px;">Order Natively →</span>
+                    </div>
+                    <div class="partner-card" onclick="triggerPopup('partner')">
+                        <h4>Royal Bakers</h4>
+                        <p style="color:#777; font-size:15px; margin-bottom: 5px;">Bulandshahr Central</p>
+                        <p>Providing custom celebration confectionery, multi-grain sandwich breads, and baked rolls.</p>
+                        <span style="color:var(--primary); font-weight:bold; font-size:15px;">Order Natively →</span>
+                    </div>
+                    <div class="partner-card" onclick="triggerPopup('partner')">
+                        <h4>Krishna Dosa Point</h4>
+                        <p style="color:#777; font-size:15px; margin-bottom: 5px;">Siyana Road Junction</p>
+                        <p>High-turnover South Indian kitchen serving verified clean idlis, dosas, and sambhar variants.</p>
+                        <span style="color:var(--primary); font-weight:bold; font-size:15px;">Order Natively →</span>
                     </div>
                 </div>
             </div>
@@ -189,19 +328,57 @@
         </div>
     </section>
 
-    <!-- NATIVE POPUP DIALOG MODULE -->
+    <!-- UNIFIED POPUP DIALOG MODULE (Supports Order, Login, and Partner views) -->
     <div id="popupBox" class="modal-overlay">
         <div class="modal-box">
             <span class="close-icon" onclick="dismissPopup()">&times;</span>
-            <h2 style="color: #d35400;">🚀 Launching Shortly</h2>
-            <p style="margin-top:20px; font-size:18px;">Our completely direct internal shipping checkout channels are being validated right now. No external multi-apps required—checkout clears natively here soon!</p>
+            
+            <div id="modalContentOrder">
+                <h2 style="color: #d35400;">🚀 Launching Shortly</h2>
+                <p style="margin-top:20px; font-size:18px;">Our completely direct internal shipping checkout channels are being validated right now. No external third-party apps required—checkout clears natively here soon!</p>
+            </div>
+            
+            <div id="modalContentLogin" style="display:none;">
+                <h2 style="color: var(--primary);">👤 Member Access</h2>
+                <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
+            </div>
+
+            <div id="modalContentPartner" style="display:none;">
+                <h2 style="color: #d35400;">🏢 Unified Logistics Processing</h2>
+                <p style="margin-top:20px; font-size:18px;">Partner kitchen items are currently being mapped directly into the internal Masala Mint fleet network. Natively routed deliveries will bypass third-party platforms for direct service soon.</p>
+            </div>
+            
             <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissPopup()">Got it</button>
         </div>
     </div>
 
+    <!-- Consistent Footer -->
+    <footer>
+        <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
         var popup = document.getElementById("popupBox");
-        function triggerPopup() { popup.style.display = "flex"; }
+        var contentOrder = document.getElementById("modalContentOrder");
+        var contentLogin = document.getElementById("modalContentLogin");
+        var contentPartner = document.getElementById("modalContentPartner");
+
+        function triggerPopup(type) {
+            contentOrder.style.display = "none";
+            contentLogin.style.display = "none";
+            contentPartner.style.display = "none";
+
+            if (type === 'login') {
+                contentLogin.style.display = "block";
+            } else if (type === 'partner') {
+                contentPartner.style.display = "block";
+            } else {
+                contentOrder.style.display = "block";
+            }
+            popup.style.display = "flex";
+        }
+
         function dismissPopup() { popup.style.display = "none"; }
         
         function runGridSearch() {
@@ -212,11 +389,16 @@
                 items[i].style.display = nameAttr.includes(searchTxt) ? "flex" : "none";
             }
         }
-    </script>
 
-    <footer>
-        <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
-    </footer>
+        function scrollToSection(sectionId, btn) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            var buttons = document.getElementsByClassName("category-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            btn.classList.add("active");
+        }
+    </script>
 
 </body>
 </html>
