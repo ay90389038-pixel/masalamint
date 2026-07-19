@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Us as a Vendor | Masala Mint Micro-Franchise</title>
+    <title>Become A Franchise Vendor | Masala Mint</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .modal-overlay {
+            display: none; position: fixed; z-index: 5000; left:0; top:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
+        }
+        .modal-box {
+            background: #fff; padding: 45px; border-radius: 12px; max-width: 500px; width: 90%;
+            text-align: center; position: relative; border-top: 8px solid var(--accent);
+        }
+        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
+    </style>
 </head>
 <body>
 
     <header>
         <div class="container">
-            <div class="logo">
-                <a href="index.html"><h1>Masala <span>Mint</span></h1></a>
-            </div>
+            <div class="logo"><a href="index.html"><h1>Masala <span>Mint</span></h1></a></div>
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="story.html">Story</a>
@@ -21,30 +30,41 @@
                 <a href="safety.html">Safety First</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="join-us.html" class="active">Join Us</a>
+                <button class="btn btn-login" onclick="triggerLoginPopup()">Login</button>
             </nav>
         </div>
     </header>
 
-    <section class="section vendor-page">
+    <section class="section">
         <div class="container split-section">
-            <img src="vendor-kit.jpg" alt="Masala Mint vendor startup kit and apron" class="feat-image">
+            <img src="vendor-kit.jpg" alt="Branded setup box recipe manual kit presentation" class="feat-image">
             <div>
-                <h2>Join Us as a Vendor</h2>
-                <p>Are you from a village cluster in Uttar Pradesh? Do you dream of running your own professional food business? Masala Mint provides the perfect opportunity.</p>
-                <h3>What We Provide</h3>
-                <p>We provide a complete startup package: a modern customized cart, comprehensive culinary training, full SOP validation, and operational marketing assets.</p>
-                <div style="margin-top: 30px;">
-                    <a href="mailto:hello@masalamint.in?subject=Vendor%20Inquiry" class="btn btn-primary">Submit Application</a>
-                </div>
+                <h2>Launch Your Scalable Micro-Franchise</h2>
+                <p>Are you looking to secure structured growth within an active commercial sector? Masala Mint provides end-to-end framework capabilities for local vendor teams.</p>
+                <p>Every active merchant gets complete toolkit distributions: customized clean heavy metal mobile machinery, full recipe instructions, uniforms, and digital dashboard units.</p>
+                <a href="mailto:hello@masalamint.in?subject=Franchise%20Onboarding%20Application" class="btn btn-primary" style="margin-top:15px;">Email Application</a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Masala Mint. All Rights Reserved.</p>
+    <div id="popupBox" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-icon" onclick="dismissLoginPopup()">&times;</span>
+            <h2 style="color: var(--primary);">👤 Member Access</h2>
+            <p style="margin-top:20px; font-size:18px;">The Masala Mint Native Account portal is currently undergoing SOP synchronization. Direct user login and localized profile tracking will activate during the official Cloud Kitchen rollout.</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="dismissLoginPopup()">Got it</button>
         </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom"><p>&copy; 2026 Masala Mint. All Rights Reserved.</p></div>
     </footer>
 
+    <script>
+        var popup = document.getElementById("popupBox");
+        function triggerLoginPopup() { popup.style.display = "flex"; }
+        function dismissLoginPopup() { popup.style.display = "none"; }
+        window.onclick = function(event) { if (event.target == popup) { popup.style.display = "none"; } }
+    </script>
 </body>
 </html>
